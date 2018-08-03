@@ -52,7 +52,7 @@ class DashBoard extends React.Component {
   render () {
     return (
        <div className="main">
-        {this.state.userData !== null ? <DashPrimary userData={this.state.userData.data}/> : null}
+        {this.state.userData !== null ? <DashPrimary userData={this.state.userData.data} imageLink={this.state.imageLink}/> : null}
       </div>
 
     );
