@@ -222,7 +222,7 @@ h6{font-size:16px}
     border-bottom: 2px solid #3498DB;
     border-top-style: none;
     border-right-style: none;
-    border-left-style: none;    
+    border-left-style: none;
     color: #fff;
 }
 
@@ -232,7 +232,7 @@ h6{font-size:16px}
   border: 3px solid #2196F3;
   min-height: 100%;
   grid-template-columns: 1fr 1fr ;
-  grid-template-rows: 160px 1fr; 
+  grid-template-rows: 160px 1fr;
   grid-template-areas: "eventinfo eventinfo"
                        "messageboard guestlist"
 
@@ -286,7 +286,7 @@ h6{font-size:16px}
   grid-area:guestlist;
   padding: 10px;
   border: 2px solid #2196F3;
-  background: #F7F7F7  
+  background: #F7F7F7
   height:auto;
   min-height:100%
 }
@@ -298,10 +298,10 @@ h6{font-size:16px}
   border: 3px solid #2196F3;
   min-height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 45px 1fr; 
+  grid-template-rows: 100px 45px 1fr;
   grid-template-areas: "venue"
-                       "info" 
-                       "fieldlist" 
+                       "info"
+                       "fieldlist"
 
 }
 
@@ -341,7 +341,7 @@ h6{font-size:16px}
   display: grid;
   min-height: 100%;
   grid-template-columns: 2.5fr 4fr ;
-  grid-template-rows: 1fr; 
+  grid-template-rows: 1fr;
   grid-column-gap: 15x;
   grid-template-areas: "field-basic-details field-todays-events"
 }
@@ -351,7 +351,7 @@ h6{font-size:16px}
   height:auto;
   min-height:100%;
   padding: 5px;
-  padding-left: 10px; 
+  padding-left: 10px;
 }
 
 .field-todays-events{
@@ -368,7 +368,7 @@ h6{font-size:16px}
   border: 3px solid #2196F3;
   min-height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: 120px 1fr; 
+  grid-template-rows: 120px 1fr;
   grid-template-areas: "fieldinfo"
                        "fieldevents"
 }
@@ -424,7 +424,7 @@ h6{font-size:16px}
   display: grid;
   min-height: 100%;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr; 
+  grid-template-rows: 1fr;
   grid-column-gap: 15x;
   grid-template-areas: "creteeventdetails timepicker"
 }
@@ -440,4 +440,29 @@ h6{font-size:16px}
   grid-area:timepicker;
   height:auto;
   min-height:100%;
+}
+
+
+/*Dashboard*/
+
+.dash-title {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  font-family:'Montserrat', sans-serif;
+  font-size:20px;line-height:1.5;
+  font-weight: bold;
+  text-align: center;
+  background: #3498DB;
+  color: white;
+}
+
+.dash-section {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  font-family:'Montserrat', sans-serif;
+  font-size:20px;line-height:1.5;
+  text-align: center;
+  background: #F7F7F7;
 }

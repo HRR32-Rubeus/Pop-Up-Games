@@ -53,7 +53,7 @@ var NavBar = props => {
 
       <Route
         path="/dashboard"
-        render={props => <DashBoard toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
+        render={props => <DashBoard/>}
       />
 
 
