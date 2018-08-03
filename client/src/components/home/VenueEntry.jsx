@@ -17,16 +17,16 @@ class VenueEntry extends React.Component {
         <div
           className="venuelistentry toneone "
           onClick={() => {
-            this.changeTarget({ type: 'venue', id: this.state.venue.id });
+            this.changeTarget({ type: 'venue', id: this.props.venue.id });
             this.props.history.push('venue');
           }}
         >
-          <span className="bold">Name:</span>
-          <span>{this.state.venue.venueName}</span>
+          <span className="bold">Name: </span>
+          <span>{this.props.venue.venueName}</span>
           <br />
           <br />
-          <span className="bold">Address:</span>
-          <span>{this.state.venue.address}</span>
+          <span className="bold">Address: </span>
+          <span>{this.props.venue.address}</span>
           <br />
           <br />
         </div>
