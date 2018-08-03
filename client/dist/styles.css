@@ -443,16 +443,29 @@ h6{font-size:16px}
 }
 
 
-/*Dashboard*/
+/*Dashboard CSS Styling Below*/
 
-.dash-title {
+.dash {
   max-width: 400px;
   margin: 10px auto;
   padding: 16px;
   font-family:'Montserrat', sans-serif;
+  text-align: center;
+  background: #3498DB;
+  color: white;
+
+}
+
+.dash-title {
   font-size:20px;line-height:1.5;
   font-weight: bold;
-  text-align: center;
+  background: #3498DB;
+  color: white;
+}
+
+.dash-welcome {
+  font-size:25px;line-height:1.5;
+  font-weight: bold;
   background: #3498DB;
   color: white;
 }
@@ -466,3 +479,20 @@ h6{font-size:16px}
   text-align: center;
   background: #F7F7F7;
 }
+
+.profile-image {
+  /*display: inline-block;*/
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.image-one {
+  background-image: url('./img/defaultUser.png');
+}
+
+

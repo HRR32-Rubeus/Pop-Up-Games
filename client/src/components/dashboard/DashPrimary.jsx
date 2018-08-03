@@ -16,10 +16,9 @@ class DashPrimary extends React.Component {
   render () {
     return (
        <div>
-         <div className='dash-title'>Welcome {this.props.userData.firstName} {this.props.userData.lastName}</div>
+         <div className='dash dash-welcome'>Welcome {this.props.userData.firstName} {this.props.userData.lastName}</div>
 
-         <div className="dash-title">
-          User Details
+        <div className="dash profile-image image-one">
         </div>
       </div>
 
