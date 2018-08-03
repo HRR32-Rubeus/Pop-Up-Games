@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+
 
 /**
 * A component to hold the user dashboard primary info to be displayed to the user
@@ -8,25 +8,15 @@ import axios from 'axios';
 class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
 
-    }
-    this.getUserName = this.getUserName.bind(this);
+    console.log('inbound props:', this.props.userData);
   }
 
-  componentDidMount () {
-    console.log('hello component');
-    this.getUserName();
-  }
-
-  getUserName () {
-    console.log('hello getUserName');
-  }
 
   render () {
     return (
        <div>
-         <div>Welcome Uday</div>
+         <div className='dash-title'>Welcome {this.props.userData.firstName} {this.props.userData.lastName}</div>
 
          <div className="dash-title">
           User Details
