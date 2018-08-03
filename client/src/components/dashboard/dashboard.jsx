@@ -40,7 +40,10 @@ class DashBoard extends React.Component {
     const imageLink =`https://en.gravatar.com/${hash}.json`;
     console.log(imageLink);
     axios.get(imageLink)
-      .then(response => console.log('grav response', response.data.entry[0].thumbnailUrl))
+      .then(response => {
+        const imageLink = response.data.entry[0].thumbnailUrl;
+        this.setState({imageLink: imageLink});
+      })
       .catch(err => console.log(err));
 
   }
