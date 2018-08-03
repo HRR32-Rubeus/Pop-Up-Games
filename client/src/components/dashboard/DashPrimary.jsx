@@ -21,7 +21,6 @@ class DashPrimary extends React.Component {
         <div className="dash profile-image image-one">
         </div>
       </div>
-
     );
   }
 };
