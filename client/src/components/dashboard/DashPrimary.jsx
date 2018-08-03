@@ -14,7 +14,6 @@ import React from 'react';
 class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
-
     console.log('inbound props:', this.props.userData);
   }
 
@@ -24,8 +23,13 @@ class DashPrimary extends React.Component {
        <div>
          <div className='dash dash-welcome'>Welcome {this.props.userData.firstName} {this.props.userData.lastName}</div>
 
-        <div className="dash profile-image image-one"></div>
+         <div className="dash dash-plain">Please Verify Your Details Below</div>
+
         <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
+
+        <div className="dash dash-plain">Your first name: {this.props.userData.firstName}</div>
+
+
       </div>
     );
   }

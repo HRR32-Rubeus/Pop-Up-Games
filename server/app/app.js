@@ -215,7 +215,7 @@ app.get('/api/user/passreset');
 
 app.get('/api/user');
 
-app.put('/api/user');
+//app.put('/api/user');
 
 app.delete('/api/user');
 

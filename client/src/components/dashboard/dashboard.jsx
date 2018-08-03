@@ -41,7 +41,10 @@ class DashBoard extends React.Component {
     console.log(imageLink);
     axios.get(imageLink)
       .then(response => {
-        const imageLink = response.data.entry[0].thumbnailUrl;
+        console.log('grav res', response);
+        let imageLink = response.data.entry[0].thumbnailUrl;
+        //add an 's' parameter to specify image default dimensions of 200px
+        imageLink += 's=400';
         this.setState({imageLink: imageLink});
       })
       .catch(err => console.log(err));
