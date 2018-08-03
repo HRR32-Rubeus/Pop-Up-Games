@@ -15,6 +15,12 @@ class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
     console.log('inbound props:', this.props.userData);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('submitted!')
   }
 
 
@@ -27,7 +33,17 @@ class DashPrimary extends React.Component {
 
         <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
 
-        <div className="dash dash-plain">Your first name: {this.props.userData.firstName}</div>
+        <hr></hr>
+
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input type="text" defaultValue={this.props.userData.firstName} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+
+
 
 
       </div>
