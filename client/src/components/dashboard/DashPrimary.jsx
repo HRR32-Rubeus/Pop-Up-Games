@@ -15,11 +15,13 @@ class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: props.userData.firstName
+      firstName: props.userData.firstName,
+      lastName:  props.userData.lastName
     }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange_firstName = this.handleChange_firstName.bind(this);
+    this.handleChange_lastName = this.handleChange_lastName.bind(this);
   }
 
   handleSubmit(e) {
@@ -38,6 +40,12 @@ class DashPrimary extends React.Component {
 
   handleChange_firstName(e) {
     this.setState({firstName: e.target.value})
+  }
+
+  handleChange_lastName(e) {
+    //console.log('old last name:', this.state.lastName);
+    this.setState({lastName: e.target.value})
+    //console.log('new last name:', this.state.lastName)
   }
 
 
@@ -60,7 +68,7 @@ class DashPrimary extends React.Component {
 
           <label>
             Last Name:
-            <input type="text" defaultValue={this.props.userData.lastName}/>
+            <input type="text" defaultValue={this.props.userData.lastName} onChange={this.handleChange_lastName}/>
           </label>
 
           <input type="submit" value="Submit" />
