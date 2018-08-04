@@ -15,6 +15,7 @@ class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: props.userData.username,
       firstName: props.userData.firstName,
       lastName:  props.userData.lastName
     }
@@ -27,11 +28,12 @@ class DashPrimary extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var data = {
-      username: 'trivediu',
-      firstName: 'udayUpdate7',
-      lastName: 'trivediUpdate',
+      username: this.state.username,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
     }
 
+    console.log('stuff being sent:', data);
     axios
       .post('/api/updateUser', data)
       .then(res => console.log('success'))
