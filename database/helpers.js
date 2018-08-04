@@ -251,3 +251,27 @@ exports.getMe = username =>
       .fetch()
       .then(found => resolve(delete found.attributes.password && found.attributes))
   );
+
+// exports.updateMe = body => {
+//   new Promise((resolve) => {
+//     //console.log(body);
+//     new User({id: 1})
+//     .save({firstName: body.firstName}, {patch: true})
+//     .then(function(data) {
+//       resolve(data)
+//     });
+//   });
+// };
+
+exports.updateMe = body =>
+  new Promise(resolve =>
+    new User({ id: 1 })
+      .save({firstName: body.firstName}, {patch: true})
+      .then(found => resolve(delete found.attributes.password && found.attributes))
+  );
+
+
+// exports.saveUser = user =>
+//   new Promise(function(resolve, reject) {
+//     new User({ username: user.username }).fetch().then(found => (found ? reject() : Users.create(user).then(resolve)));
+//   });

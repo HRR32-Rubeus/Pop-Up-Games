@@ -21,11 +21,13 @@ class DashPrimary extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var data = {
-      item1: 'hello'
+      username: 'trivediu',
+      firstName: 'udayUpdate7',
+      lastName: 'trivediUpdate',
     }
 
     axios
-      .post('/api/userTest', data)
+      .post('/api/updateUser', data)
       .then(res => console.log('success'))
       .catch(err => console.log(err));
   }
@@ -47,6 +49,12 @@ class DashPrimary extends React.Component {
             Name:
             <input type="text" defaultValue={this.props.userData.firstName} />
           </label>
+
+          <label>
+            Name:
+            <input type="text" defaultValue={this.props.userData.firstName} />
+          </label>
+
           <input type="submit" value="Submit" />
         </form>
 
