@@ -37,7 +37,7 @@ class DashPrimary extends React.Component {
   }
 
   handleChange_firstName(e) {
-    console.log('old first name:', this.state.firstName);
+    this.setState({firstName: e.target.value})
   }
 
 
