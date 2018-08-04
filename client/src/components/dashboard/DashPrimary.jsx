@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 
 /**
 * A component to hold the user dashboard primary info to be displayed to the user
@@ -20,7 +20,14 @@ class DashPrimary extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submitted!')
+    var data = {
+      item1: 'hello'
+    }
+
+    axios
+      .post('/api/userTest', data)
+      .then(res => console.log('success'))
+      .catch(err => console.log(err));
   }
 
 

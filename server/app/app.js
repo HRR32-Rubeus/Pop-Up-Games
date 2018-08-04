@@ -200,6 +200,11 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
  */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
+app.post('/api/userTest', util.checkLoggedIn, function (req, res) {
+  console.log('what the fucki');
+  res.status(201).send('hello');
+});
+
 //2
 app.delete('/api/event/guest');
 
