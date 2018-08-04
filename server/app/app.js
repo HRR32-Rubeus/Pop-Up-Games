@@ -7,6 +7,7 @@ const event = require('./components/events');
 const field = require('./components/fields');
 const venue = require('./components/venues');
 const sport = require('./components/sports');
+const games = require('./components/games');
 
 const app = express();
 app.use(
@@ -199,6 +200,24 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
  * ===
  */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
+
+//CHRIS'ENDPOINTS BEGIN
+
+//console logger
+const logger = (req, res, next) => {
+  console.log(req.route.path, 'called');
+  console.log('req.body is', req.body);
+  console.log('req.session is', req.session);
+  console.log('req.query is', req.query);
+  next();
+};
+
+app.get('/api/games', util.checkLoggedIn, logger, games.getUser);
+app.post('/api/creategame', util.checkLoggedIn, logger, (req, res) => {
+  res.send(' creategame post posted');
+});
+
+//CHRIS'ENDPOINTS END
 
 //2
 app.delete('/api/event/guest');
