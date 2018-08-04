@@ -14,8 +14,12 @@ import axios from 'axios';
 class DashPrimary extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      firstName: props.userData.firstName
+    }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange_firstName = this.handleChange_firstName.bind(this);
   }
 
   handleSubmit(e) {
@@ -32,6 +36,10 @@ class DashPrimary extends React.Component {
       .catch(err => console.log(err));
   }
 
+  handleChange_firstName(e) {
+    console.log('old first name:', this.state.firstName);
+  }
+
 
   render () {
     return (
@@ -46,13 +54,13 @@ class DashPrimary extends React.Component {
 
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name:
-            <input type="text" defaultValue={this.props.userData.firstName} />
+            First Name:
+            <input type="text" defaultValue={this.props.userData.firstName} onChange={this.handleChange_firstName} />
           </label>
 
           <label>
-            Name:
-            <input type="text" defaultValue={this.props.userData.firstName} />
+            Last Name:
+            <input type="text" defaultValue={this.props.userData.lastName}/>
           </label>
 
           <input type="submit" value="Submit" />
