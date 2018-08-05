@@ -19,6 +19,7 @@ class EventView extends React.Component {
       event: undefined,
       joined: false,
       message: '',
+      modalIsOpen: false
     };
 
     this.handleGuestClick = this.handleGuestClick.bind(this);
