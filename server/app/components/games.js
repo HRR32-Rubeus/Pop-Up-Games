@@ -12,18 +12,13 @@ const test = (req, res, next) => {
 };
 
 const getUser = (req, res, next) => {
-  //util.getRes(util.buildRes([id], db.getUserEvents(req.query)));
-
   util.getRes(db.getUserEvents({ username: req.session.user }), res);
 };
 
+/****UNDER CONSTRUCTION */
 const getGameResults = (req, res, next) => {
-  util.getRes(
-    // can i use buildRes to build a response here from
-    //do i need to use this?
-    util.buildRes(['events', 'games'], db.getEvent(req.query), db.getGames(req.query)),
-    res
-  );
+  // util.getRes(util.buildRes(['events', 'games'], db.getEvent(req.query), db.getGames(req.query)), res);
+  util.getRes(db.getGames(req.query), res);
   console.log('getGameResults called');
   res.send('get Game Results called');
 };
@@ -38,6 +33,7 @@ const createGame = (req, res, next) => {
 
   res.send('createGame called');
 };
+/****UNDER CONSTRUCTION */
 
 exports.getUser = getUser;
 exports.getGameResults = getGameResults;

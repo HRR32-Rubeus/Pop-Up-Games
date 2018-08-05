@@ -84,9 +84,19 @@ exports.saveGuest = event =>
 //save the game, input: {eventId, gameName, scoreOne, scoreTwo, teamOne, teamTwo}
 exports.saveGame = game =>
   new Promise((resolve, reject) =>
-    new Game() // what the heck do i put in here?
-      .fetch()
-      .then(found => new Game())
+    new Game({
+      eventId: game.eventId,
+      gameName: game.gameName,
+      scoreOne: game.scoreOne,
+      scoreTwo: game.scoreTwo,
+      teamOne: game.teamOne,
+      teamTwo: game.teamTwo,
+    }) // what the heck do i put in here?
+      .save(null, { method: 'insert' })
+      .then(found => {
+        console.log(found);
+        resolve();
+      })
   );
 
 //gets the games from the table, input: ???
@@ -273,10 +283,15 @@ exports.getMe = username =>
 exports.updateMe = body =>
   new Promise(resolve =>
     new User({ id: body.id })
-      .save({firstName: body.firstName,
-             lastName: body.lastName,
-             address: body.address,
-             lat: body.lat,
-             lng: body.lng}, {patch: true})
+      .save(
+        {
+          firstName: body.firstName,
+          lastName: body.lastName,
+          address: body.address,
+          lat: body.lat,
+          lng: body.lng,
+        },
+        { patch: true }
+      )
       .then(found => resolve(found))
   );
