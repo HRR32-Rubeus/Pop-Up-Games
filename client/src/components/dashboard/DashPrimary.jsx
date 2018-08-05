@@ -56,9 +56,9 @@ class DashPrimary extends React.Component {
   }
 
   handleChange_address(e) {
-    console.log('old add:', this.state.address);
+    //console.log('old add:', this.state.address);
     this.setState({address: e.target.value})
-    console.log('new add:', this.state.address);
+    //console.log('new add:', this.state.address);
   }
 
 
@@ -88,6 +88,16 @@ class DashPrimary extends React.Component {
           <label>
             Address:
             <input type="text" defaultValue={this.props.userData.address} onChange={this.handleChange_address}/>
+          </label>
+
+          <label>
+           Lat:
+            <input type="text" defaultValue={this.props.userData.lat} onChange={this.handleChange_address}/>
+          </label>
+
+           <label>
+           Lng:
+            <input type="text" defaultValue={this.props.userData.lng} onChange={this.handleChange_address}/>
           </label>
 
 

@@ -252,26 +252,14 @@ exports.getMe = username =>
       .then(found => resolve(delete found.attributes.password && found.attributes))
   );
 
-// exports.updateMe = body => {
-//   new Promise((resolve) => {
-//     //console.log(body);
-//     new User({id: 1})
-//     .save({firstName: body.firstName}, {patch: true})
-//     .then(function(data) {
-//       resolve(data)
-//     });
-//   });
-// };
-
+//Update a User's profile from the dashboard page - only applicable to logged in users
 exports.updateMe = body =>
   new Promise(resolve =>
     new User({ id: body.id })
-      .save({address: body.address}, {patch: true})
-      .then(found => resolve(delete found.attributes.password && found.attributes))
+      .save({firstName: body.firstName,
+             lastName: body.lastName,
+             address: body.address,
+             lat: body.lat,
+             lng: body.lng}, {patch: true})
+      .then(found => resolve(found))
   );
-
-
-// exports.saveUser = user =>
-//   new Promise(function(resolve, reject) {
-//     new User({ username: user.username }).fetch().then(found => (found ? reject() : Users.create(user).then(resolve)));
-//   });
