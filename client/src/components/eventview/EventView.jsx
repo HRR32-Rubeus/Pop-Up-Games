@@ -20,6 +20,8 @@ class EventView extends React.Component {
       joined: false,
       message: '',
     };
+
+    this.handleGuestClick = this.handleGuestClick.bind(this);
   }
   /**
    * @description calls the function to get the event data from the database when ready
@@ -127,6 +129,10 @@ class EventView extends React.Component {
       });
   }
 
+  handleGuestClick (first, last) {
+
+  }
+
   render() {
     if (this.state.event === undefined) {
       return <div>Loading</div>;
@@ -153,7 +159,7 @@ class EventView extends React.Component {
           </div>
           <div className="guestlist">
             <FormError check={this.state.joined} message={'You have been added to the guest list'} />
-            <GuestList GuestList={this.state.event.guests} />
+            <GuestList GuestList={this.state.event.guests} handleGuestClick={this.handleGuestClick}/>
           </div>
         </div>
       );
