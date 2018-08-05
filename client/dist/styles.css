@@ -491,6 +491,23 @@ h6{font-size:16px}
   background: #ECF0F1;
 }
 
+.dash-plain-grav {
+  font-size:13px;line-height:1.5;
+}
+
+
+.dash-plain-form {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 16px;
+  font-family:'Montserrat', sans-serif;
+  font-size:15px;line-height:1.5;
+  text-align: center;
+  color: black;
+  background: #ECF0F1;
+  font-weight: bold;
+}
+
 .profile-image {
   /*display: inline-block;*/
   width: 150px;

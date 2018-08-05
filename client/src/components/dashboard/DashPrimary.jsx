@@ -89,7 +89,13 @@ class DashPrimary extends React.Component {
    */
   renderForm () {
     return (
+
         <div className="form-style dash">
+
+          <div className="dash-plain-form">{this.props.userData.email}</div>
+          <div className="dash-plain-form">{this.props.userData.username}</div>
+          <hr></hr>
+
           <form onSubmit={this.handleSubmit}>
             <div>
               <label>
@@ -139,7 +145,10 @@ class DashPrimary extends React.Component {
 
         <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
 
-        <hr></hr>
+        <div className="dash dash-plain dash-plain-grav">Don't See Your Picture? <a href="https://en.gravatar.com/site/signup/" target="_blank">Sign Up For A Gravitar Profile</a></div>
+
+
+
         {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}
 
       </div>

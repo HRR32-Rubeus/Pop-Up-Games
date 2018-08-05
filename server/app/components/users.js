@@ -46,13 +46,7 @@ const logout = (req, res) => req.session.destroy(() => res.sendStatus(200));
 
 const getMe = (req, res) => util.getRes(db.getMe(req.session.user), res);
 
-//const updateMe = (req, res) => util.postRes(db.updateMe(req.body), res);
-
-// const updateMe = (req, res) => {
-//   //db.updateMe(req.body);
-//   util.postRes(db.updateMe(req.body), res);
-// }
-
+//route to update a user's information after they have updated their user profile
 const updateMe = (req, res) => {
   //db.updateMe(req.body);
   util.postRes(
