@@ -53,6 +53,28 @@ const updateMe = (req, res) => {
   util.postRes(db.updateMe(req.body), res);
 }
 
+
+
+// const signup = (req, res) =>
+//   util.postRes(
+//     util
+//       .hashPass(req.body.password)
+//       .then(pass => gm.getGeoLocation((req.body.password = pass) && req.body))
+//       .then(
+//         loc =>
+//           loc.data.results.length
+//             ? db.saveUser(
+//                 (req.body.lat = loc.data.results[0].geometry.location.lat) &&
+//                   (req.body.lng = loc.data.results[0].geometry.location.lng) &&
+//                   (req.body.address = loc.data.results[0].formatted_address) &&
+//                   req.body
+//               )
+//             : res.status(400).send({ serverMessage: 'improper address' }) && null
+//       ),
+//     res,
+//     'username in use'
+//   );
+
 exports.signup = signup;
 exports.login = login;
 exports.logout = logout;

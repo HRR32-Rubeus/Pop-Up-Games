@@ -265,8 +265,8 @@ exports.getMe = username =>
 
 exports.updateMe = body =>
   new Promise(resolve =>
-    new User({ id: 1 })
-      .save({firstName: body.firstName}, {patch: true})
+    new User({ id: body.id })
+      .save({address: body.address}, {patch: true})
       .then(found => resolve(delete found.attributes.password && found.attributes))
   );
 
