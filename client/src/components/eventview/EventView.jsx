@@ -196,6 +196,7 @@ class EventView extends React.Component {
               <div>User Profile:</div>
               <div>First Name: {this.state.user.firstName} </div>
               <div>Last Name: {this.state.user.lastName} </div>
+              <div>Email:  {this.state.user.email} </div>
             </Modal>
           </div>
         </div>
