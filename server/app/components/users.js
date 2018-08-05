@@ -48,9 +48,21 @@ const getMe = (req, res) => util.getRes(db.getMe(req.session.user), res);
 
 //const updateMe = (req, res) => util.postRes(db.updateMe(req.body), res);
 
+// const updateMe = (req, res) => {
+//   //db.updateMe(req.body);
+//   util.postRes(db.updateMe(req.body), res);
+// }
+
 const updateMe = (req, res) => {
   //db.updateMe(req.body);
-  util.postRes(db.updateMe(req.body), res);
+  util.postRes(
+    gm.getGeoLocation(req.body)
+      .then(loc =>{
+        console.log("updated lat is:", loc.data.results[0].geometry.location.lat);
+        console.log("updated lat is:", loc.data.results[0].geometry.location.lng);
+      }),
+      res
+  );
 }
 
 
