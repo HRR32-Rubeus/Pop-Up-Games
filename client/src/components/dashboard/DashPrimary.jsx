@@ -19,7 +19,8 @@ class DashPrimary extends React.Component {
       username: props.userData.username,
       firstName: props.userData.firstName,
       lastName:  props.userData.lastName,
-      address: props.userData.address
+      address: props.userData.address,
+      confirmation: false
     }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,7 +41,10 @@ class DashPrimary extends React.Component {
 
     axios
       .post('/api/updateUser', data)
-      .then(res => console.log('success'))
+      .then(res => {
+        console.log('success');
+        this.setState({confirmation: true})
+       })
       .catch(err => console.log(err));
   }
 
