@@ -145,7 +145,7 @@ class DashPrimary extends React.Component {
 
         <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
 
-        <div className="dash dash-plain dash-plain-grav">Don't See Your Picture? <a href="https://en.gravatar.com/site/signup/" target="_blank">Sign Up For A Gravitar Profile</a></div>
+        <div className="dash dash-plain dash-plain-grav">Don't See Your Picture Above? <a href="https://en.gravatar.com/site/signup/" target="_blank">Sign Up For A Gravitar Profile</a></div>
 
 
 
