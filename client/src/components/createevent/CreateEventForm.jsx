@@ -78,6 +78,7 @@ class CreateEventForm extends React.Component {
 
   componentWillMount() {
     // could theoretically get a dynamic list of sports
+    // call for list of sports
   }
 
   processForm() {
@@ -91,9 +92,9 @@ class CreateEventForm extends React.Component {
       this.state.notes === ''
     ) {
       this.setState({ formError: true });
-    } else if (this.state.date.diff(moment().format('MM/DD/YYYY')) < 0) {
+    } /* if (this.state.date.diff(moment().format('MM/DD/YYYY')) < 0) {
       this.setState({ eventTooEarly: true });
-    } else {
+    } else*/ else {
       let params = {
         eventName: this.state.eventName,
         startBlock: this.calcBlock(this.state.startBlock),

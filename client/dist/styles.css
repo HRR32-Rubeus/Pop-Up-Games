@@ -346,6 +346,13 @@ h6{font-size:16px}
   grid-template-areas: "field-basic-details field-todays-events"
 }
 
+.gamefield{
+  border: 1px solid #2196F3;
+  background: #F7F7F7;
+  padding:5px;
+
+}
+
 .field-basic-details{
   grid-area:field-basic-details;
   height:auto;

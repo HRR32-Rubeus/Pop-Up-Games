@@ -11,6 +11,7 @@ var Venues = require('./collections/venues');
 var Venue = require('./models/venue');
 var Messages = require('./collections/messages');
 var Message = require('./models/message');
+var Game = require('./models/game');
 var moment = require('moment');
 
 //save user to the database, input: {username, password}
@@ -78,6 +79,22 @@ exports.saveGuest = event =>
       .then(found => new User({ id: found.id }).guestEvents().attach(new Event({ id: event.id })))
       .then(resolve)
       .catch(reject)
+  );
+
+//save the game, input: {eventId, gameName, scoreOne, scoreTwo, teamOne, teamTwo}
+exports.saveGame = game =>
+  new Promise((resolve, reject) =>
+    new Game() // what the heck do i put in here?
+      .fetch()
+      .then(found => new Game())
+  );
+
+//gets the games from the table, input: ???
+exports.getGame = game =>
+  new Promise((resolve, reject) =>
+    new Game() // what the heck do i put in here?
+      .fetch()
+      .then(found => new Game())
   );
 
 //get the event, input: {id(id of the event)}

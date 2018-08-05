@@ -7,7 +7,13 @@ import Field from './field/Field.jsx';
 import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
+
+import Games from './FEATURE/gamesContainer.jsx';
+import LeaguesContainer from './FEATURE-LEAGUES/LeaguesContainer.jsx';
+import CreateGame from './FEATURE/CreateGame.jsx';
+
 import DashBoard from './dashboard/DashBoard.jsx'
+
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /**
@@ -20,6 +26,7 @@ var NavBar = props => {
   let toggleAuth = props.toggleAuth;
   let changeTarget = props.changeTarget;
   let target = props.target;
+
   return (
     <div className="top">
       <div className="bar blue card left-align large">
@@ -36,6 +43,15 @@ var NavBar = props => {
         <Link to="/createvenue" className="bar-item button hide-small padding-large hover-white left-align ">
           Create
         </Link>
+
+        <Link to="/leagues" className="bar-item button hide-small padding-large hover-white left-align ">
+          Leagues
+        </Link>
+
+        <Link to="/games" className="bar-item button hide-small padding-large hover-white left-align ">
+          Games
+        </Link>
+
         <Link to="/logout" className="bar-item button hide-small padding-large hover-white left-align ">
           Logout
         </Link>
@@ -65,6 +81,17 @@ var NavBar = props => {
         path="/venue"
         render={props => <Venue toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
       />
+      <Route path="/leagues" render={props => <LeaguesContainer changeTarget={changeTarget} target={target} />} />
+      <Route
+        path="/games"
+        render={props => <Games changeTarget={changeTarget} target={target} userInfo={userInfo} />}
+      />
+
+      <Route
+        path="/creategame"
+        render={props => <CreateGame changeTarget={changeTarget} target={target} userInfo={userInfo} />}
+      />
+
       <Route
         path="/createevent"
         render={props => <CreateEvent toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}

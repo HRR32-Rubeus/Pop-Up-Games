@@ -5,7 +5,7 @@ import Login from './components/login/Login.jsx';
 import Signup from './components/signup/Signup.jsx';
 import NavBar from './components/NavBar.jsx';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +17,7 @@ class App extends React.Component {
       target: {},
     };
   }
+
   /**
    * @description changes the value of App.state.loggedIn
    * should be bound before passing to another component
@@ -58,6 +59,7 @@ class App extends React.Component {
    * @return { null } nothing
    */
   changeTarget(target) {
+    console.log('changetarget fired');
     let oldTarget = this.state.target;
     oldTarget[target.type] = target.id;
     this.setState({ target: oldTarget });

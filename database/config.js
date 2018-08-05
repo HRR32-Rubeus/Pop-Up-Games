@@ -8,6 +8,7 @@ var knex = require('knex')({
     user: 'root',
     password: process.env.DBPASS || require('../config/config.js').DBPASS,
     database: process.env.NODE_ENV === 'test' ? 'popupgamesTest' : 'popupgames',
+    port: require('../config/config.js').DBPORT,
   },
   useNullAsDefault: true,
 });
@@ -148,6 +149,38 @@ db.knex.schema.hasTable('events_users').then(function(exists) {
         pair.increments('id').primary();
         pair.integer('eventId');
         pair.integer('userId');
+      })
+      .then(function(table) {
+        console.log('Created Table', table);
+      });
+  }
+});
+
+db.knex.schema.hasTable('games').then(function(exists) {
+  if (!exists) {
+    db.knex.schema
+      .createTable('games', function(game) {
+        game.increments('id').primary();
+        game.string('teamOne');
+        game.string('teamTwo');
+        game.integer('eventId');
+        game.integer('scoreOne');
+        game.integer('scoreTwo');
+        //key that references the events table
+      })
+      .then(function(table) {
+        console.log('Created Table', table);
+      });
+  }
+});
+
+db.knex.schema.hasTable('events_games').then(function(exists) {
+  if (!exists) {
+    db.knex.schema
+      .createTable('events_games', function(pair) {
+        pair.increments('id').primary();
+        pair.integer('eventId');
+        pair.integer('gameId');
       })
       .then(function(table) {
         console.log('Created Table', table);
