@@ -20,6 +20,7 @@ const getUser = (req, res, next) => {
 const getGameResults = (req, res, next) => {
   util.getRes(
     // can i use buildRes to build a response here from
+    //do i need to use this?
     util.buildRes(['events', 'games'], db.getEvent(req.query), db.getGames(req.query)),
     res
   );
@@ -29,6 +30,10 @@ const getGameResults = (req, res, next) => {
 
 const createGame = (req, res, next) => {
   console.log('createGame called');
+
+  //we want to add an entry to the games table here.
+  //add teamOne, teamTwo, scoreOne, scoreTwo, gameName, eventID
+
   util.postRes(db.saveGame((req.body.username = req.session.user) && req.body), res);
 
   res.send('createGame called');

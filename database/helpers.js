@@ -81,12 +81,22 @@ exports.saveGuest = event =>
       .catch(reject)
   );
 
+//save the game, input: {eventId, gameName, scoreOne, scoreTwo, teamOne, teamTwo}
 exports.saveGame = game =>
   new Promise((resolve, reject) =>
     new Game() // what the heck do i put in here?
       .fetch()
       .then(found => new Game())
   );
+
+//gets the games from the table, input: ???
+exports.getGame = game =>
+  new Promise((resolve, reject) =>
+    new Game() // what the heck do i put in here?
+      .fetch()
+      .then(found => new Game())
+  );
+
 //get the event, input: {id(id of the event)}
 exports.getEvent = event =>
   new Promise(function(resolve, reject) {
