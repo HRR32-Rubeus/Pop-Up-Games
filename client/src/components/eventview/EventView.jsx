@@ -23,13 +23,17 @@ class EventView extends React.Component {
     };
 
     this.handleGuestClick = this.handleGuestClick.bind(this);
+    this.toggleUserProfileModal = this.toggleUserProfileModal.bind(this);
   }
+
   /**
    * @description calls the function to get the event data from the database when ready
    */
   componentWillMount() {
     this.getEventData();
   }
+
+
 
   /**
    * @description creates an axios get request to the event endpoint to get all the info about
@@ -130,9 +134,26 @@ class EventView extends React.Component {
       });
   }
 
-  handleGuestClick (first, last) {
 
+
+  /**
+   * @description renders a pop up modal with details of the guest who's name is clicked.
+   * @param user profile details
+   * @return a modal is rendered, but not data returned
+   */
+
+  handleGuestClick (first, last) {
+    this.toggleUserProfileModal();
   }
+
+  /**
+   * @description updates state to display modal
+   * @param n/a
+   * @return n/a
+   */
+ toggleUserProfileModal () {
+    this.setState({modalIsOpen: true});
+ }
 
   render() {
     if (this.state.event === undefined) {
