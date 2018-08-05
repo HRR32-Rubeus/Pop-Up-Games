@@ -79,7 +79,7 @@ class Home extends React.Component {
    * points plotted around it
    */
   render() {
-    if (this.state.position === undefined) {
+    if (this.state.position === undefined || this.state.renderMap === false) {
       return (
         <div>
           <h1>Homepage</h1>
