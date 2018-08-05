@@ -201,8 +201,8 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
 
-
-app.post('/api/updateUser', util.checkLoggedIn, user.updateMe);
+//update user information accordingly (actually should have been put)
+app.put('/api/updateUser', util.checkLoggedIn, user.updateMe);
 
 //2
 app.delete('/api/event/guest');

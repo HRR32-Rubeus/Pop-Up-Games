@@ -42,7 +42,7 @@ class DashPrimary extends React.Component {
     }
 
     axios
-      .post('/api/updateUser', data)
+      .put('/api/updateUser', data)
       .then(res => {
         console.log('success');
        })
