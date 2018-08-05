@@ -7,6 +7,7 @@ import utils from '../../../utils.js';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import PropTypes from 'prop-types';
+import Modal from './Modal.jsx';
 
 /**
  * @description Component that holds the overall view for an event
@@ -19,7 +20,8 @@ class EventView extends React.Component {
       event: undefined,
       joined: false,
       message: '',
-      modalIsOpen: false
+      modalIsOpen: false,
+      user: {firstName: null, lastName: null}
     };
 
     this.handleGuestClick = this.handleGuestClick.bind(this);
@@ -142,7 +144,11 @@ class EventView extends React.Component {
    * @return a modal is rendered, but not data returned
    */
 
-  handleGuestClick (first, last) {
+  handleGuestClick (firstName, lastName) {
+    //set state
+    let user = Object.assign({}, this.state.user);
+    user.firstName = firstName;
+    this.setState({user});
     this.toggleUserProfileModal();
   }
 
@@ -182,6 +188,12 @@ class EventView extends React.Component {
           <div className="guestlist">
             <FormError check={this.state.joined} message={'You have been added to the guest list'} />
             <GuestList GuestList={this.state.event.guests} handleGuestClick={this.handleGuestClick}/>
+          </div>
+
+          <div>
+            <Modal show={this.state.modalIsOpen} onClose={this.toggleModal}>
+              Here's some content for the modal
+            </Modal>
           </div>
         </div>
       );

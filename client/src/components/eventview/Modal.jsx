@@ -4,7 +4,7 @@
    * @return a modal dialog box will be rendered
    */
 
-   import React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class Modal extends React.Component {
