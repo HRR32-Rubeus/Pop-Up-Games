@@ -17,6 +17,26 @@ const getUser = (req, res, next) => {
   util.getRes(db.getUserEvents({ username: req.session.user }), res);
 };
 
+const getGameResults = (req, res, next) => {
+  util.getRes(
+    // can i use buildRes to build a response here from
+    util.buildRes(['events', 'games'], db.getEvent(req.query), db.getGames(req.query)),
+    res
+  );
+  console.log('getGameResults called');
+  res.send('get Game Results called');
+};
+
+const createGame = (req, res, next) => {
+  console.log('createGame called');
+  util.postRes(db.saveGame((req.body.username = req.session.user) && req.body), res);
+
+  res.send('createGame called');
+};
+
+exports.getUser = getUser;
+exports.getGameResults = getGameResults;
+exports.createGame = createGame;
 // const addMeToEvent = (req, res) => util.postRes(db.saveGuest((req.body.username = req.session.user) && req.body), res);
 
 // const create = (req, res) => util.postRes(db.saveEvent((req.body.username = req.session.user) && req.body), res);
@@ -41,4 +61,3 @@ const getUser = (req, res, next) => {
 // exports.get = get;
 // exports.getMyEvents = getMyEvents;
 // exports.addMessage = addMessage;
-exports.getUser = getUser;

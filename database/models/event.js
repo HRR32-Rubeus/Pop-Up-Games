@@ -22,6 +22,9 @@ var Event = db.Model.extend({
   sport: function() {
     return this.belongsTo(Sport, 'sportId');
   },
+  games: function() {
+    return this.hasMany(Game, 'gameId');
+  },
 });
 
 module.exports = db.model('Event', Event);

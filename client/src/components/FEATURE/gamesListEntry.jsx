@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import GameResult from './GameResult.jsx';
+import GameResultsContainer from './GameResultsContainer.jsx';
 
 /**
  *
@@ -23,19 +24,21 @@ class GamesListEntry extends React.Component {
   render() {
     return (
       <div
-        className="indivfield hover-lightblue"
+        className="gamefield hover-lightblue"
         onClick={() => {
           this.changeTarget({ type: 'game', id: this.props.data.id });
-          this.props.history.push('/creategame');
+          this.props.history.push({
+            pathname: '/creategame',
+            state: { eventName: this.props.data.eventName },
+          });
           console.log('game clicked');
         }}
       >
-        <strong>Game ID:</strong> {this.props.data.id} <br />
-        <strong>Event Name: </strong> {this.props.data.eventName} <br />
-        <strong>Notes:</strong> {this.props.data.notes} <br />
-        <strong>{moment(this.props.data.date).format('MMM Do YY')} </strong> <br />
-        {/* here we will map the games' results */}
-        <GameResult />
+        <span className="bold">Game ID:</span> {this.props.data.id}
+        <span className="bold"> {moment(this.props.data.date).format('MMM Do YY')} </span> <br />
+        <span className="bold">Event Name: </span> {this.props.data.eventName} <br />
+        <span className="bold">Notes:</span> {this.props.data.notes} <br />
+        <GameResultsContainer />
       </div>
     );
   }

@@ -213,9 +213,10 @@ const logger = (req, res, next) => {
 };
 
 app.get('/api/games', util.checkLoggedIn, logger, games.getUser);
-app.post('/api/creategame', util.checkLoggedIn, logger, (req, res) => {
-  res.send(' creategame post posted');
-});
+
+app.get('/api/gameresults', util.checkLoggedIn, logger, games.getGameResults);
+
+app.post('/api/creategame', util.checkLoggedIn, logger, games.createGame);
 
 //CHRIS'ENDPOINTS END
 

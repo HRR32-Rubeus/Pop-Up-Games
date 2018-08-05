@@ -69,8 +69,9 @@ class GamesBody extends React.Component {
         <div className="venue-body">
           <div className="venue-name">{this.props.userInfo.firstName}'s Games</div>
           <div className="venueinfo">Venue info Class</div>
-          <div className="fieldlist">Field List Class</div>
-          <GamesList games={this.state.userGames} changeTarget={this.props.changeTarget} />
+          <div className="fieldlist">
+            <GamesList games={this.state.userGames} changeTarget={this.props.changeTarget} />
+          </div>
         </div>
       );
     }

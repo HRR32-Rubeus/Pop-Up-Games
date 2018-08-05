@@ -1,7 +1,7 @@
-const db = require('../config');
-const Game = require('../models/game');
+var db = require('../config');
+var Game = require('../models/game');
 
-const Games = new db.Collection();
+var Games = new db.Collection();
 
 Games.model = Field;
 

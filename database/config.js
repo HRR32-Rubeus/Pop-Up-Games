@@ -159,13 +159,28 @@ db.knex.schema.hasTable('events_users').then(function(exists) {
 db.knex.schema.hasTable('games').then(function(exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('games', function(pair) {
+      .createTable('games', function(game) {
+        game.increments('id').primary();
+        game.string('teamOne');
+        game.string('teamTwo');
+        game.integer('eventId');
+        game.integer('scoreOne');
+        game.integer('scoreTwo');
+        //key that references the events table
+      })
+      .then(function(table) {
+        console.log('Created Table', table);
+      });
+  }
+});
+
+db.knex.schema.hasTable('events_games').then(function(exists) {
+  if (!exists) {
+    db.knex.schema
+      .createTable('events_games', function(pair) {
         pair.increments('id').primary();
-        pair.string('teamOne');
-        pair.string('teamTwo');
         pair.integer('eventId');
-        pair.integer('scoreOne');
-        pair.integer('scoreTwo');
+        pair.integer('gameId');
       })
       .then(function(table) {
         console.log('Created Table', table);

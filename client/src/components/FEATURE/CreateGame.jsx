@@ -7,6 +7,8 @@ export default class CreateGame extends Component {
     super(props);
 
     //this component should get the games data related to the event
+    this.updateState = this.updateState.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +39,7 @@ export default class CreateGame extends Component {
     //to the game table
 
     //will we need different components/calls for creation and editing?
-    axios.post('/creategame', params, { headers: {} }).then(res => {
+    axios.post('/api/creategame', params, { headers: {} }).then(res => {
       console.log(res);
     });
   }
@@ -56,31 +58,50 @@ export default class CreateGame extends Component {
     return (
       <div className="main">
         <div className="search-container">
-          <h2 className="center">
-            Hello This is the Create Game Component, feature where people will be able to add scores to the game that
-            they clicked.
-          </h2>
-          <h4 className="center">Event Title here</h4>
+          <h2 className="center">Add the game's results here!</h2>
+          <h4 className="center">Event Name Here!!</h4>
           <div className="create-event-form">
             <div className="createeventdetailsgrid">
-              <form>
-                <FormField
-                  className="input"
-                  txtId={'Game Name'}
-                  fieldName={'gameName'}
-                  updateState={this.updateState.bind(this)}
-                  handleEnter={this.handleEnter.bind(this)}
-                />
-                <input placeholder="Game Name" type="text" /> <br />
-                <input placeholder="Team 1" type="text" /> <br />
-                <input placeholder="Team 2" type="text" /> <br />
-                <input placeholder="Team 2 Score" type="number" /> <br />
-                <input placeholder="Team 2 Score" type="number" /> <br />
-                <button type="button" onClick={() => this.processForm()}>
-                  Submit
-                </button>
-              </form>
+              <FormField
+                className="input"
+                txtId={'Game Name'}
+                fieldName={'gameName'}
+                updateState={this.updateState}
+                handleEnter={this.handleEnter}
+              />
+              <FormField
+                className="input"
+                txtId={'Team 1'}
+                fieldName={'teamOne'}
+                updateState={this.updateState}
+                handleEnter={this.handleEnter}
+              />
+              <FormField
+                className="input"
+                txtId={'Team 2'}
+                fieldName={'teamTwo'}
+                updateState={this.updateState}
+                handleEnter={this.handleEnter}
+              />
+              <FormField
+                className="input"
+                txtId={'Team 1 Score'}
+                fieldName={'scoreOne'}
+                updateState={this.updateState}
+                handleEnter={this.handleEnter}
+              />
+              <FormField
+                className="input"
+                txtId={'Team 2 Score'}
+                fieldName={'scoreTwo'}
+                updateState={this.updateState}
+                handleEnter={this.handleEnter}
+              />
+              <button type="button" onClick={() => this.processForm()}>
+                Submit
+              </button>
             </div>
+            <div className="timepickergrid">ScoreBoard Placeholder</div>
           </div>
         </div>
       </div>

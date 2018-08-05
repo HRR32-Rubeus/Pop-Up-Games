@@ -11,7 +11,6 @@ const GamesList = props => (
     {props.games.map((game, index) => {
       return <GamesListEntry data={game} key={index} changeTarget={props.changeTarget} />;
     })}
-    {props.games.length}
   </div>
 );
 

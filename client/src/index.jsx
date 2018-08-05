@@ -59,6 +59,7 @@ class App extends React.Component {
    * @return { null } nothing
    */
   changeTarget(target) {
+    console.log('changetarget fired');
     let oldTarget = this.state.target;
     oldTarget[target.type] = target.id;
     this.setState({ target: oldTarget });
