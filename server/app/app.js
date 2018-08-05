@@ -201,6 +201,7 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
  */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
+
 //CHRIS'ENDPOINTS BEGIN
 
 //console logger
@@ -220,6 +221,11 @@ app.post('/api/creategame', util.checkLoggedIn, logger, games.createGame);
 
 //CHRIS'ENDPOINTS END
 
+
+//update user information accordingly (actually should have been put)
+app.put('/api/updateUser', util.checkLoggedIn, user.updateMe);
+
+
 //2
 app.delete('/api/event/guest');
 
@@ -235,7 +241,7 @@ app.get('/api/user/passreset');
 
 app.get('/api/user');
 
-app.put('/api/user');
+//app.put('/api/user');
 
 app.delete('/api/user');
 

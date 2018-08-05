@@ -7,9 +7,13 @@ import Field from './field/Field.jsx';
 import Home from './home/Home.jsx';
 import Search from './search/Search.jsx';
 import Venue from './venue/Venue.jsx';
+
 import Games from './FEATURE/gamesContainer.jsx';
 import LeaguesContainer from './FEATURE-LEAGUES/LeaguesContainer.jsx';
 import CreateGame from './FEATURE/CreateGame.jsx';
+
+import DashBoard from './dashboard/DashBoard.jsx'
+
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /**
@@ -29,6 +33,11 @@ var NavBar = props => {
         <Link to="/home" className="bar-item button hide-small padding-large hover-white left-align ">
           Home
         </Link>
+
+        <Link to="/dashboard" className="bar-item button hide-small padding-large hover-white left-align ">
+          Dashboard
+        </Link>
+
         {/* // todo: impliment searching for venues or events */}
         {/* <Link to="/search" className="bar-item button hide-small padding-large hover-white left-align ">Search</Link> */}
         <Link to="/createvenue" className="bar-item button hide-small padding-large hover-white left-align ">
@@ -57,6 +66,13 @@ var NavBar = props => {
         path="/field"
         render={props => <Field toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
       />
+
+      <Route
+        path="/dashboard"
+        render={props => <DashBoard/>}
+      />
+
+
       <Route
         path="/event"
         render={props => <EventView toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}

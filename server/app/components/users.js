@@ -46,7 +46,44 @@ const logout = (req, res) => req.session.destroy(() => res.sendStatus(200));
 
 const getMe = (req, res) => util.getRes(db.getMe(req.session.user), res);
 
+//route to update a user's information after they have updated their user profile
+const updateMe = (req, res) => {
+  //db.updateMe(req.body);
+  util.postRes(
+    gm.getGeoLocation(req.body)
+      .then(loc =>{
+        req.body.lat = loc.data.results[0].geometry.location.lat;
+        req.body.lng = loc.data.results[0].geometry.location.lng;
+        db.updateMe(req.body)
+      }),
+      res
+  );
+}
+
+
+
+// const signup = (req, res) =>
+//   util.postRes(
+//     util
+//       .hashPass(req.body.password)
+//       .then(pass => gm.getGeoLocation((req.body.password = pass) && req.body))
+//       .then(
+//         loc =>
+//           loc.data.results.length
+//             ? db.saveUser(
+//                 (req.body.lat = loc.data.results[0].geometry.location.lat) &&
+//                   (req.body.lng = loc.data.results[0].geometry.location.lng) &&
+//                   (req.body.address = loc.data.results[0].formatted_address) &&
+//                   req.body
+//               )
+//             : res.status(400).send({ serverMessage: 'improper address' }) && null
+//       ),
+//     res,
+//     'username in use'
+//   );
+
 exports.signup = signup;
 exports.login = login;
 exports.logout = logout;
 exports.getMe = getMe;
+exports.updateMe = updateMe;
