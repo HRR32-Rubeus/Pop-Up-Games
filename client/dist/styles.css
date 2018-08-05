@@ -506,6 +506,54 @@ h6{font-size:16px}
   background-image: url('./img/defaultUser.png');
 }
 
+/*User Profile Submit Button*/
+/*.profile-button {
+  background-color: white;
+  font-size:15px;line-height:1.0;
+  color: #3498DB;
+  font-weight: bold;
+}*/
+
+
+.profile-button {
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.profile-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.profile-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.profile-button:hover span {
+  padding-right: 25px;
+}
+
+.profile-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 
 
 

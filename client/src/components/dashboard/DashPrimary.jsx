@@ -64,7 +64,7 @@ class DashPrimary extends React.Component {
   render () {
     return (
        <div>
-         <div className='dash dash-welcome'>User Dashboard</div>
+         <div className='dash dash-welcome'>Manage Your Profile</div>
 
          <div className="dash dash-plain">Please Verify Your Details Below</div>
 
@@ -72,38 +72,32 @@ class DashPrimary extends React.Component {
 
         <hr></hr>
 
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            First Name:
-            <input type="text" defaultValue={this.props.userData.firstName} onChange={this.handleChange_firstName} />
-          </label>
+        <div className="form-style dash">
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <label>
+                First Name:
+                <input type="text" defaultValue={this.props.userData.firstName} onChange={this.handleChange_firstName} />
+              </label>
+            </div>
 
-          <label>
-            Last Name:
-            <input type="text" defaultValue={this.props.userData.lastName} onChange={this.handleChange_lastName}/>
-          </label>
-
-
-          <label>
-            Address:
-            <input type="text" defaultValue={this.props.userData.address} onChange={this.handleChange_address}/>
-          </label>
-
-          <label>
-           Lat:
-            <input type="text" defaultValue={this.props.userData.lat} onChange={this.handleChange_address}/>
-          </label>
-
-           <label>
-           Lng:
-            <input type="text" defaultValue={this.props.userData.lng} onChange={this.handleChange_address}/>
-          </label>
+            <div>
+              <label>
+                Last Name:
+                <input type="text" defaultValue={this.props.userData.lastName} onChange={this.handleChange_lastName}/>
+              </label>
+            </div>
 
 
-          <input type="submit" value="Submit" />
-        </form>
+            <label>
+              Address:
+              <input type="text" defaultValue={this.props.userData.address} onChange={this.handleChange_address}/>
+            </label>
 
+            <button className="profile-button dash-plain" onClick={this.handleSubmit}><span>UPDATE MY PROFILE</span></button>
 
+          </form>
+        </div>
 
 
       </div>
