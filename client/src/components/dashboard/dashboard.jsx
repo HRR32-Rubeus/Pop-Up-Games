@@ -7,7 +7,11 @@ import md5 from 'js-md5';
 * A component to hold the user dashboard to display details about the user
 */
 
-
+  /**
+   * @description holds the dashboard for the user profile
+   * @param { Object || false } state the desired state of loggedIn.  False or the profile of logged in user
+   * @return { null } nothing
+   */
 class DashBoard extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +27,11 @@ class DashBoard extends React.Component {
     this.getUserData();
   }
 
+  /**
+   * @description gets the current userdata to prepopulate profile fields
+   * @param n/a
+   * @return n/a
+   */
   getUserData () {
     axios.get('/api/me')
       .then(userData => {
@@ -32,6 +41,11 @@ class DashBoard extends React.Component {
       .catch(err => console.log(err));
   }
 
+  /**
+   * @description creates a link to a gravatar user's profile image, requires the use of md5 hash algorithm (installed as npm package)
+   * @param String of the user's email.  The email must be trimmed of white space and converted to all lowercase
+   * @return n/a
+   */
   createImageLink (email) {
     email = email.trim();
     email = email.toLowerCase();
