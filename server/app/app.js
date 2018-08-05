@@ -200,6 +200,10 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
  */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
+
+//update user information accordingly (actually should have been put)
+app.put('/api/updateUser', util.checkLoggedIn, user.updateMe);
+
 //2
 app.delete('/api/event/guest');
 
@@ -215,7 +219,7 @@ app.get('/api/user/passreset');
 
 app.get('/api/user');
 
-app.put('/api/user');
+//app.put('/api/user');
 
 app.delete('/api/user');
 
