@@ -20,7 +20,6 @@ class DashBoard extends React.Component {
   }
 
   componentDidMount () {
-    console.log('hello component');
     this.getUserData();
   }
 
@@ -38,10 +37,8 @@ class DashBoard extends React.Component {
     email = email.toLowerCase();
     const hash = md5(email);
     const imageLink =`https://en.gravatar.com/${hash}.json`;
-    console.log(imageLink);
     axios.get(imageLink)
       .then(response => {
-        console.log('grav res', response);
         let imageLink = response.data.entry[0].thumbnailUrl;
         //add an 's' parameter to specify image default dimensions of 200px
         imageLink += 's=400';

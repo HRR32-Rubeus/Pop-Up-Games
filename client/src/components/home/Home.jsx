@@ -12,15 +12,31 @@ import { withRouter } from 'react-router-dom';
  * @param userInfo object containing data on the user
  */
 
+// class Home extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       user: props.userInfo,
+//       position: { lat: props.userInfo.lat, lng: props.userInfo.lng, address: props.userInfo.address },
+//       nearbyVenues: [],
+//     };
+//     this.changeTarget = props.changeTarget;
+//   }
+
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       user: props.userInfo,
+      renderMap: false,
       position: { lat: props.userInfo.lat, lng: props.userInfo.lng, address: props.userInfo.address },
       nearbyVenues: [],
     };
     this.changeTarget = props.changeTarget;
+
+    //console.log('constructor old userdata', props.userInfo)
   }
   /**
    * @description Executes a get request to the venues endpoint to get all the venues in range to display on the map
@@ -39,6 +55,23 @@ class Home extends React.Component {
           console.log(error);
         }
       });
+
+
+
+
+    axios.get('/api/me')
+      .then(userData => {
+        //update the position property as follows b/c it's an object
+        let position = Object.assign({}, this.state.position);
+        position.lat = userData.data.lat;
+        position.lng = userData.data.lng;
+        position.address = userData.data.address;
+        //now set state of the new values for position state
+        this.setState({user: userData.data});
+        this.setState({position});
+        this.setState({renderMap: true});
+      })
+      .catch(err => console.log(err));
   }
 
   /**

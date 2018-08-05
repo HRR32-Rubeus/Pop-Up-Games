@@ -38,7 +38,6 @@ class DashPrimary extends React.Component {
       address: this.state.address
     }
 
-    console.log('stuff being sent:', data);
     axios
       .post('/api/updateUser', data)
       .then(res => console.log('success'))
