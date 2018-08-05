@@ -251,3 +251,15 @@ exports.getMe = username =>
       .fetch()
       .then(found => resolve(delete found.attributes.password && found.attributes))
   );
+
+//Update a User's profile from the dashboard page - only applicable to logged in users
+exports.updateMe = body =>
+  new Promise(resolve =>
+    new User({ id: body.id })
+      .save({firstName: body.firstName,
+             lastName: body.lastName,
+             address: body.address,
+             lat: body.lat,
+             lng: body.lng}, {patch: true})
+      .then(found => resolve(found))
+  );
