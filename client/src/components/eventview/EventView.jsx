@@ -21,7 +21,7 @@ class EventView extends React.Component {
       joined: false,
       message: '',
       modalIsOpen: false,
-      user: {firstName: null, lastName: null}
+      user: {firstName: null, lastName: null, email: null}
     };
 
     this.handleGuestClick = this.handleGuestClick.bind(this);
@@ -144,10 +144,11 @@ class EventView extends React.Component {
    * @return a modal is rendered, but not data returned
    */
 
-  handleGuestClick (firstName, lastName) {
-    //set state
+  handleGuestClick (firstName, lastName, email) {
     let user = Object.assign({}, this.state.user);
     user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
     this.setState({user});
     this.toggleUserProfileModal();
   }
@@ -158,7 +159,7 @@ class EventView extends React.Component {
    * @return n/a
    */
  toggleUserProfileModal () {
-    this.setState({modalIsOpen: true});
+    this.setState({modalIsOpen: !this.state.modalIsOpen});
  }
 
   render() {
@@ -191,8 +192,10 @@ class EventView extends React.Component {
           </div>
 
           <div>
-            <Modal show={this.state.modalIsOpen} onClose={this.toggleModal}>
-              Here's some content for the modal
+            <Modal show={this.state.modalIsOpen} onClose={this.toggleUserProfileModal}>
+              <div>User Profile:</div>
+              <div>First Name: {this.state.user.firstName} </div>
+              <div>Last Name: {this.state.user.lastName} </div>
             </Modal>
           </div>
         </div>
