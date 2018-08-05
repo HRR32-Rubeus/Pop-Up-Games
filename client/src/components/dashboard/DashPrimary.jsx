@@ -20,13 +20,15 @@ class DashPrimary extends React.Component {
       firstName: props.userData.firstName,
       lastName:  props.userData.lastName,
       address: props.userData.address,
-      confirmation: false
+      updated: false
     }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange_firstName = this.handleChange_firstName.bind(this);
     this.handleChange_lastName = this.handleChange_lastName.bind(this);
     this.handleChange_address = this.handleChange_address.bind(this);
+    this.renderForm = this.renderForm.bind(this);
+    this.renderSubmitConfirm = this.renderSubmitConfirm.bind(this);
   }
 
   handleSubmit(e) {
@@ -43,9 +45,10 @@ class DashPrimary extends React.Component {
       .post('/api/updateUser', data)
       .then(res => {
         console.log('success');
-        this.setState({confirmation: true})
        })
       .catch(err => console.log(err));
+
+     this.setState({updated: true})
   }
 
   handleChange_firstName(e) {
@@ -64,18 +67,8 @@ class DashPrimary extends React.Component {
     //console.log('new add:', this.state.address);
   }
 
-
-  render () {
+  renderForm () {
     return (
-       <div>
-         <div className='dash dash-welcome'>Manage Your Profile</div>
-
-         <div className="dash dash-plain">Please Verify Your Details Below</div>
-
-        <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
-
-        <hr></hr>
-
         <div className="form-style dash">
           <form onSubmit={this.handleSubmit}>
             <div>
@@ -102,7 +95,27 @@ class DashPrimary extends React.Component {
 
           </form>
         </div>
+    );
+  }
 
+  renderSubmitConfirm () {
+    return (
+      <div className='dash-plain'>Your Profile Has Been Updated!</div>
+    );
+  }
+
+
+  render () {
+    return (
+       <div>
+         <div className='dash dash-welcome'>Manage Your Profile</div>
+
+         <div className="dash dash-plain">Please Verify Your Details Below</div>
+
+        <div className= "dash profile-image" style={ { backgroundImage: `url(${this.props.imageLink})` } }></div>
+
+        <hr></hr>
+        {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}
 
       </div>
     );
