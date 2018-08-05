@@ -58,8 +58,9 @@ const updateMe = (req, res) => {
   util.postRes(
     gm.getGeoLocation(req.body)
       .then(loc =>{
-        console.log("updated lat is:", loc.data.results[0].geometry.location.lat);
-        console.log("updated lat is:", loc.data.results[0].geometry.location.lng);
+        req.body.lat = loc.data.results[0].geometry.location.lat;
+        req.body.lng = loc.data.results[0].geometry.location.lng;
+        db.updateMe(req.body)
       }),
       res
   );
