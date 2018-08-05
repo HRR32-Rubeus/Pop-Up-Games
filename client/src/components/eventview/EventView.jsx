@@ -37,6 +37,7 @@ class EventView extends React.Component {
     axios
       .get('/api/event', { params: { id: this.state.eventId } })
       .then(response => {
+        console.log('response for event data:', response);
         this.setState({ event: response.data });
       })
       .catch(error => {
