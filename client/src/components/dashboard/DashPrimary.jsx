@@ -15,6 +15,7 @@ class DashPrimary extends React.Component {
       firstName: props.userData.firstName,
       lastName:  props.userData.lastName,
       address: props.userData.address,
+      favSports: props.userData.favSports,
       updated: false
     }
     console.log('inbound props:', this.props.userData);
@@ -24,6 +25,7 @@ class DashPrimary extends React.Component {
     this.handleChange_address = this.handleChange_address.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderSubmitConfirm = this.renderSubmitConfirm.bind(this);
+    this.handleChange_sports = this.handleChange_sports.bind(this);
   }
 
   /**
@@ -38,7 +40,8 @@ class DashPrimary extends React.Component {
       username: this.state.username,
       firstName:this.state.firstName,
       lastName: this.state.lastName,
-      address: this.state.address
+      address: this.state.address,
+      favSports: this.state.favSports
     }
 
     axios
@@ -80,6 +83,10 @@ class DashPrimary extends React.Component {
     //console.log('old add:', this.state.address);
     this.setState({address: e.target.value})
     //console.log('new add:', this.state.address);
+  }
+
+  handleChange_sports (e) {
+    this.setState({favSports: e.target.value})
   }
 
   /**
@@ -127,13 +134,13 @@ class DashPrimary extends React.Component {
             </label>
 
             <label>
-              Fav Soprts:
-              <input type="text" defaultValue={this.props.userData.favSports} onChange={this.handleChange_address}/>
+              List Some of Your Favorite Sports:
+              <input type="text" defaultValue={this.props.userData.favSports} onChange={this.handleChange_sports}/>
             </label>
 
             <label>
-              Brief Bio:
-              <input type="text" defaultValue={this.props.userData.bio} onChange={this.handleChange_address}/>
+              Tell Us A Bit About Yourself:
+              <input type="text" defaultValue={this.props.userData.bio} onChange={this.handleChange_bio}/>
             </label>
 
 

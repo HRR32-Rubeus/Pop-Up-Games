@@ -131,7 +131,7 @@ exports.getGuests = event =>
       .fetch({ withRelated: ['guests'] })
       .then(found => {
         var guests = JSON.parse(JSON.stringify(found.related('guests')));
-        var gsts = guests.map(({ id, firstName, lastName, email, rating, bio }) => ({ id, firstName, lastName, email, rating, bio }));
+        var gsts = guests.map(({ id, firstName, lastName, email, rating, bio, favSports }) => ({ id, firstName, lastName, email, rating, bio, favSports }));
         resolve(gsts);
       })
       .catch(reject);
@@ -280,6 +280,8 @@ exports.updateMe = body =>
              lastName: body.lastName,
              address: body.address,
              lat: body.lat,
-             lng: body.lng}, {patch: true})
+             lng: body.lng,
+             bio: body.bio,
+             favSports: body.favSports}, {patch: true})
       .then(found => resolve(found))
   );

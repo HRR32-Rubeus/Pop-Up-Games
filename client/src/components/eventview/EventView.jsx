@@ -27,7 +27,8 @@ class EventView extends React.Component {
               lastName: null,
               email: null,
               imageLink: null,
-              bio: null
+              bio: null,
+              favSports: null
             }
     };
 
@@ -152,14 +153,15 @@ class EventView extends React.Component {
    * @return a modal is rendered, but not data returned
    */
 
-  handleGuestClick (firstName, lastName, email, bio) {
+  handleGuestClick (firstName, lastName, email, bio, favSports) {
     let user = Object.assign({}, this.state.user);
     user.firstName = firstName;
     user.lastName = lastName;
     user.bio = bio;
+    user.favSports = favSports;
     this.createImageLink(email);
     this.setState({user});
-    this.toggleUserProfileModal();
+    //this.toggleUserProfileModal();
   }
 
   /**
@@ -191,8 +193,14 @@ class EventView extends React.Component {
         let user = Object.assign({}, this.state.user);
         user.imageLink = imageLink;
         this.setState({user});
+        this.toggleUserProfileModal();
       })
-      .catch(err => console.log('Oops! This User Doesnt Have A Gravatar Account!'));
+      .catch(err => {
+        console.log('Oops! This User Doesnt Have A Gravatar Account!')
+        //even if the gravatar profile image is not rendered, we still want to
+        //render the modal window
+        this.toggleUserProfileModal();
+      });
 
   }
 
@@ -231,10 +239,16 @@ class EventView extends React.Component {
 
               <div className= "dash profile-image" style={ { backgroundImage: `url(${this.state.user.imageLink})` } }></div>
 
+              <div className="form-style">
+                <div><div className="boldMod">First Name: </div><div>{this.state.user.firstName}</div></div>
 
-              <div>First Name: {this.state.user.firstName} </div>
-              <div>Last Name: {this.state.user.lastName} </div>
-              <div>Bio:  {this.state.user.bio} </div>
+                <div><div className="boldMod">Last Name: </div><div>{this.state.user.lastName}</div></div>
+
+                <div><div className="boldMod">About Me: </div><div>{this.state.user.bio}</div></div>
+
+                <div><div className="boldMod">Favorite Sports: </div><div>{this.state.user.favSports}</div></div>
+              </div>
+
             </Modal>
           </div>
         </div>

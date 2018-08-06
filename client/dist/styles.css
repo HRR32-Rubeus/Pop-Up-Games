@@ -583,6 +583,12 @@ h6{font-size:16px}
   right: 0;
 }
 
+.boldMod {
+  color: white;
+  font-weight: bold;
+  background: #3498DB;
+}
+
 
 
 
