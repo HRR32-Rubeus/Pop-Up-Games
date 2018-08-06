@@ -101,8 +101,6 @@ class Home extends React.Component {
                 venues={this.state.nearbyVenues}
                 positions={this.state.position}
               />
-              {this.state.position.lat}
-              {this.state.position.lng}
             </div>
           </div>
         </div>

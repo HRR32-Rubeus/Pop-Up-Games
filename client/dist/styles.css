@@ -59,7 +59,10 @@ h6{font-size:16px}
 
 
 /* Nav Bar */
-.bar{width:100%;overflow:hidden}
+.bar{
+  width:100%;
+  overflow:hidden;
+}
 .bar .button{white-space:normal}
 
 
@@ -237,8 +240,17 @@ h6{font-size:16px}
   min-height: 100%;
   grid-template-columns: 1fr 1fr ;
   grid-template-rows: 160px 1fr;
-  grid-template-areas: "eventinfo eventinfo"
+  grid-template-areas: "eventinfo eventinfo" 
+                        
+  "eventweather eventweather"
                        "messageboard guestlist"
+                    
+
+}
+
+.eventweather{
+  grid-area:eventweather;
+  height:auto;
 
 }
 
@@ -265,7 +277,7 @@ h6{font-size:16px}
   grid-area:messageboard;
   padding: 10px;
   border: 2px solid #2196F3;
-  background: #F7F7F7
+  background: #F7F7F7;
   height:auto;
   min-height:100%;
 }
@@ -304,7 +316,8 @@ h6{font-size:16px}
   grid-template-columns: 1fr;
   grid-template-rows: 100px 45px 1fr;
   grid-template-areas: "venue"
-                       "info"
+  "info"
+  "weather"
                        "fieldlist"
 
 }
@@ -327,6 +340,13 @@ h6{font-size:16px}
   padding: 8px;
   background-color: rgb(190, 218, 241);
   text-align: center;
+}
+
+.venueweather{
+  grid-area:weather;
+  padding:5px;
+  text-align: center;
+  min-height: 100%;
 }
 
 .fieldlist{
@@ -651,4 +671,8 @@ h6{font-size:16px}
   padding-left: 3rem;
   float: right;
 
+}
+
+.weathervis{
+  padding:4px;
 }

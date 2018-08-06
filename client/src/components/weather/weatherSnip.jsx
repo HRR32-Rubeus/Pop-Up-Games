@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import weatherEmoji from './weatheremoji.js';
 
 export default class WeatherSnip extends Component {
   constructor(props) {
@@ -27,9 +28,10 @@ export default class WeatherSnip extends Component {
   render() {
     return (
       <div>
-        It is currently {this.state.weather.currently ? this.state.weather.currently.temperature : ''} degrees F
+        Currently: {this.state.weather.currently ? this.state.weather.currently.temperature : ''} °F
+        {this.state.weather.currently ? weatherEmoji(this.state.weather.currently.icon) : ''}
         <br />
-        It will be {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} degrees F
+        It will be {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} °F
         {this.state.weather.hourly ? moment(this.state.weather.hourly.data[4].time * 1000).fromNow() : ''}
       </div>
     );

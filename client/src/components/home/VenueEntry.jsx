@@ -19,7 +19,13 @@ class VenueEntry extends React.Component {
           className="venuelistentry toneone "
           onClick={() => {
             this.changeTarget({ type: 'venue', id: this.state.venue.id });
-            this.props.history.push('venue');
+            this.props.history.push({
+              pathname: 'venue',
+              state: {
+                lat: this.props.venue.lat,
+                lng: this.props.venue.lng,
+              },
+            });
           }}
         >
           <span className="bold">Name: </span>

@@ -27,7 +27,7 @@ class EventEntry extends React.Component {
         className="field-event-entry hover-lightblue"
         onClick={() => {
           this.changeTarget({ type: 'event', id: this.state.id });
-          this.props.history.push('/event');
+          this.props.history.push({ pathname: '/event', state: { position: this.props.position } });
         }}
       >
         <div className="sporticon">
