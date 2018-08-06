@@ -25,11 +25,13 @@ export default class VenueWeather extends Component {
   }
 
   render() {
-    return (
-      <div className="weathervis">
-        Hello Weather!
-        <div>{this.props.position.lat}</div>
-      </div>
-    );
+    let weather;
+    if (this.props.position.lat) {
+      weather = <div />;
+    } else {
+      weather = <div> </div>;
+    }
+
+    return <div className="weathervis">{weather}</div>;
   }
 }

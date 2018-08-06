@@ -57,7 +57,7 @@ class Field extends React.Component {
             <FieldCalendar
               data={this.state.fieldObj}
               changeTarget={this.changeTarget}
-              position={this.props.history.location.state.position}
+              position={this.props.history.location.state.position || ''}
             />
           </div>
         </div>

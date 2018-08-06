@@ -28,10 +28,12 @@ export default class WeatherSnip extends Component {
   render() {
     return (
       <div>
-        Currently: {this.state.weather.currently ? this.state.weather.currently.temperature : ''} °F
+        <span className="bold">Currently:</span>{' '}
+        {this.state.weather.currently ? this.state.weather.currently.temperature : ''} °F
         {this.state.weather.currently ? weatherEmoji(this.state.weather.currently.icon) : ''}
         <br />
-        It will be {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} °F
+        <span className="bold">It will be </span>{' '}
+        {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} °F
         {this.state.weather.hourly ? moment(this.state.weather.hourly.data[4].time * 1000).fromNow() : ''}
       </div>
     );

@@ -76,9 +76,7 @@ class VenueBody extends React.Component {
             <VenueInfo venueinfo={this.state.venueObj.venue.address} /> <br />
           </div>
 
-          <div className="venueweather">
-            <VenueWeather position={this.props.position} />
-          </div>
+          <div className="venueweather">{/* <VenueWeather position={this.props.position} /> */}</div>
 
           <div className="fieldlist">
             <FieldList

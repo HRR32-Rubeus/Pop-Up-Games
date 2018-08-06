@@ -36,7 +36,6 @@ class VenueEntry extends React.Component {
           <span>{this.state.venue.address}</span>
           <br />
           <br />
-          <span className="bold">Weather Forecast:</span> <br />
           <WeatherSnip lat={this.props.venue.lat} lng={this.props.venue.lng} />
         </div>
       </li>

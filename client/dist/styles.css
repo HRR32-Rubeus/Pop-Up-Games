@@ -137,6 +137,7 @@ h6{font-size:16px}
 .venuecolumn {
     float: right;
     width: 25%;
+    overflow: auto;
 }
 
 .venuelist {
@@ -637,22 +638,34 @@ h6{font-size:16px}
 
 .game-score-left{
   position: relative;
-  border:2px solid #f4aa42;
+  border:2px solid #d3d3d3;
+  border-radius: 2px;
   display: inline-block;
   font-size: 24px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .game-score-right{
   position: relative;
-  border:2px solid #f4aa42;
+  border:2px solid #d3d3d3;
+  border-radius: 2px;
   display: inline-block;
   font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
 }
 
 .game-score-container{
-  position: relative;
-  border: solid purple 2px;
-  padding: 5px;
+  display: grid;
+  border: solid gray 2px;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+  padding: 10px;
+  margin: 5px;
 }
 
 .game-team-left{
@@ -661,6 +674,7 @@ h6{font-size:16px}
   display: inline-block;
   padding-right: 3em;
   float: left;
+  text-align: center;
 
 }
 
@@ -670,6 +684,7 @@ h6{font-size:16px}
   display: inline-block;
   padding-left: 3rem;
   float: right;
+  text-align: center;
 
 }
 
