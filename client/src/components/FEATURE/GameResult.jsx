@@ -19,12 +19,13 @@ export default class GameResult extends Component {
   render() {
     return (
       <div className="gamefield hover-blue">
-        <span className="bold">{this.props.game.gameName}</span> <br />
-        <span className="bold">Team 1:</span> {this.props.game.teamOne} <br />
-        <span className="bold">Team 2:</span> {this.props.game.teamTwo} <br />
-        <span className="bold">Score 1:</span> {this.props.game.scoreOne} <br />
-        <span className="bold">Score 2:</span> {this.props.game.scoreTwo} <br />
-        {/* <strong>Score: </strong> {this.props.data.result ? this.props.data.result : 'Click to enter score.'} <br /> */}
+        <div className="game-heading">{this.props.game.gameName}</div> <br />
+        <div className="game-score-container">
+          <div className="game-team-left">{this.props.game.teamOne}</div>
+          <div className="game-score-left">{this.props.game.scoreOne}</div>
+          <div className="game-score-right">{this.props.game.scoreTwo}</div>
+          <div className="game-team-right">{this.props.game.teamTwo}</div>
+        </div>
       </div>
     );
   }

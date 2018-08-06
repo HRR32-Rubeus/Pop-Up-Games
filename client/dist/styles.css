@@ -583,5 +583,45 @@ h6{font-size:16px}
 }
 
 
+.game-heading{
+  text-align: center;
+  font-size: 16px;
+}
 
+.game-score-left{
+  position: relative;
+  border:2px solid #f4aa42;
+  display: inline-block;
+  font-size: 24px;
+}
 
+.game-score-right{
+  position: relative;
+  border:2px solid #f4aa42;
+  display: inline-block;
+  font-size: 24px;
+}
+
+.game-score-container{
+  position: relative;
+  border: solid purple 2px;
+  padding: 5px;
+}
+
+.game-team-left{
+  font-weight: bold;
+  font-size: 24px;
+  display: inline-block;
+  padding-right: 3em;
+  float: left;
+
+}
+
+.game-team-right{
+  font-weight: bold;
+  font-size: 24px;
+  display: inline-block;
+  padding-left: 3rem;
+  float: right;
+
+}
