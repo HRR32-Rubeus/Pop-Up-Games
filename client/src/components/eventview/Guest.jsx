@@ -13,7 +13,7 @@ const update = function (handleGuestClick, firstName, lastName, email, bio, favS
 
 var Guest = props => (
   <li>
-    <div onClick={update.bind(null, props.handleGuestClick, props.guest.firstName, props.guest.lastName, props.guest.email, props.guest.bio, props.guest.favSports)}>{`${props.guest.firstName} ${props.guest.lastName}`}</div>
+    <div className="hover" onClick={update.bind(null, props.handleGuestClick, props.guest.firstName, props.guest.lastName, props.guest.email, props.guest.bio, props.guest.favSports)}>{`${props.guest.firstName} ${props.guest.lastName}`}</div>
   </li>
 );
 
