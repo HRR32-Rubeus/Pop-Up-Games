@@ -8,6 +8,7 @@ import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import PropTypes from 'prop-types';
 import Modal from './Modal.jsx';
+import md5 from 'js-md5';
 
 /**
  * @description Component that holds the overall view for an event
@@ -21,11 +22,17 @@ class EventView extends React.Component {
       joined: false,
       message: '',
       modalIsOpen: false,
-      user: {firstName: null, lastName: null, email: null}
+      user: {
+              firstName: null,
+              lastName: null,
+              email: null,
+              imageLink: null
+            }
     };
 
     this.handleGuestClick = this.handleGuestClick.bind(this);
     this.toggleUserProfileModal = this.toggleUserProfileModal.bind(this);
+    this.createImageLink = this.createImageLink.bind(this);
   }
 
   /**
@@ -148,7 +155,7 @@ class EventView extends React.Component {
     let user = Object.assign({}, this.state.user);
     user.firstName = firstName;
     user.lastName = lastName;
-    user.email = email;
+    this.createImageLink(email);
     this.setState({user});
     this.toggleUserProfileModal();
   }
@@ -161,6 +168,31 @@ class EventView extends React.Component {
  toggleUserProfileModal () {
     this.setState({modalIsOpen: !this.state.modalIsOpen});
  }
+
+
+   /**
+   * @description creates a link to a gravatar user's profile image, requires the use of md5 hash algorithm (installed as npm package)
+   * @param String of the user's email.  The email must be trimmed of white space and converted to all lowercase
+   * @return n/a
+   */
+  createImageLink (email) {
+    email = email.trim();
+    email = email.toLowerCase();
+    const hash = md5(email);
+    const imageLink =`https://en.gravatar.com/${hash}.json`;
+    axios.get(imageLink)
+      .then(response => {
+        let imageLink = response.data.entry[0].thumbnailUrl;
+        //add an 's' parameter to specify image default dimensions of 200px
+        imageLink += 's=400';
+
+        let user = Object.assign({}, this.state.user);
+        user.imageLink = imageLink;
+        this.setState({user});
+      })
+      .catch(err => console.log(err));
+
+  }
 
   render() {
     if (this.state.event === undefined) {
@@ -194,6 +226,10 @@ class EventView extends React.Component {
           <div>
             <Modal show={this.state.modalIsOpen} onClose={this.toggleUserProfileModal}>
               <div>User Profile:</div>
+
+              <div className= "dash profile-image" style={ { backgroundImage: `url(${this.state.user.imageLink})` } }></div>
+
+
               <div>First Name: {this.state.user.firstName} </div>
               <div>Last Name: {this.state.user.lastName} </div>
               <div>Email:  {this.state.user.email} </div>
