@@ -502,6 +502,11 @@ h6{font-size:16px}
   font-size:13px;line-height:1.5;
 }
 
+.dash-solid {
+  background: #164463;
+  color: white;
+}
+
 
 .dash-plain-form {
   max-width: 400px;

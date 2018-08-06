@@ -90,13 +90,22 @@ class DashPrimary extends React.Component {
   renderForm () {
     return (
 
+
+
         <div className="form-style dash">
-
-          <div className="dash-plain-form">{this.props.userData.email}</div>
-          <div className="dash-plain-form">{this.props.userData.username}</div>
-          <hr></hr>
-
           <form onSubmit={this.handleSubmit}>
+
+              <div>
+                Username:
+                  <div className="form-style dash-solid">{this.props.userData.username}</div>
+              </div>
+
+              <div>
+                Email:
+                  <div className="form-style dash-solid">{this.props.userData.email}</div>
+              </div>
+            <hr></hr>
+
             <div>
               <label>
                 First Name:
