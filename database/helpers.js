@@ -131,7 +131,7 @@ exports.getGuests = event =>
       .fetch({ withRelated: ['guests'] })
       .then(found => {
         var guests = JSON.parse(JSON.stringify(found.related('guests')));
-        var gsts = guests.map(({ id, firstName, lastName, email, rating }) => ({ id, firstName, lastName, email, rating }));
+        var gsts = guests.map(({ id, firstName, lastName, email, rating, bio }) => ({ id, firstName, lastName, email, rating, bio }));
         resolve(gsts);
       })
       .catch(reject);

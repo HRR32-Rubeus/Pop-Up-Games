@@ -26,7 +26,8 @@ class EventView extends React.Component {
               firstName: null,
               lastName: null,
               email: null,
-              imageLink: null
+              imageLink: null,
+              bio: null
             }
     };
 
@@ -151,10 +152,11 @@ class EventView extends React.Component {
    * @return a modal is rendered, but not data returned
    */
 
-  handleGuestClick (firstName, lastName, email) {
+  handleGuestClick (firstName, lastName, email, bio) {
     let user = Object.assign({}, this.state.user);
     user.firstName = firstName;
     user.lastName = lastName;
+    user.bio = bio;
     this.createImageLink(email);
     this.setState({user});
     this.toggleUserProfileModal();
@@ -190,7 +192,7 @@ class EventView extends React.Component {
         user.imageLink = imageLink;
         this.setState({user});
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log('Oops! This User Doesnt Have A Gravatar Account!'));
 
   }
 
@@ -232,7 +234,7 @@ class EventView extends React.Component {
 
               <div>First Name: {this.state.user.firstName} </div>
               <div>Last Name: {this.state.user.lastName} </div>
-              <div>Email:  {this.state.user.email} </div>
+              <div>Bio:  {this.state.user.bio} </div>
             </Modal>
           </div>
         </div>

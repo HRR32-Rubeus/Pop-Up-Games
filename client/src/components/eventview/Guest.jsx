@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
  * todo I feel like this could be dressed up much better
  */
 
-const update = function (handleGuestClick, firstName, lastName, email) {
-  handleGuestClick(firstName, lastName, email);
+const update = function (handleGuestClick, firstName, lastName, email, bio) {
+  handleGuestClick(firstName, lastName, email, bio);
 };
 
 
 var Guest = props => (
   <li>
-    <div onClick={update.bind(null, props.handleGuestClick, props.guest.firstName, props.guest.lastName, props.guest.email)}>{`${props.guest.firstName} ${props.guest.lastName}`}</div>
+    <div onClick={update.bind(null, props.handleGuestClick, props.guest.firstName, props.guest.lastName, props.guest.email, props.guest.bio)}>{`${props.guest.firstName} ${props.guest.lastName}`}</div>
   </li>
 );
 

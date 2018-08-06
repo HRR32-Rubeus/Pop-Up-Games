@@ -59,7 +59,7 @@ class DashBoard extends React.Component {
         imageLink += 's=400';
         this.setState({imageLink: imageLink});
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log('Oops this user doesnt have a gravatar account!'));
 
   }
 
