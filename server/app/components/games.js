@@ -19,8 +19,6 @@ const getUser = (req, res, next) => {
 const getGameResults = (req, res, next) => {
   // util.getRes(util.buildRes(['events', 'games'], db.getEvent(req.query), db.getGames(req.query)), res);
   util.getRes(db.getGames(req.query), res);
-  console.log('getGameResults called');
-  res.send('get Game Results called');
 };
 
 const createGame = (req, res, next) => {

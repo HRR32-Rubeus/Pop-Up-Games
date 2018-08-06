@@ -14,10 +14,10 @@ export default class WeatherSnip extends Component {
   componentDidMount() {
     let params = { lat: this.props.lat, lng: this.props.lng };
     console.log(params);
-    axios.get('/api/weather', { params: params }).then(res => {
-      console.log('server res:', res);
-      this.weatherState(res);
-    });
+    // axios.get('/api/weather', { params: params }).then(res => {
+    //   console.log('server res:', res);
+    //   this.weatherState(res);
+    // });
   }
 
   weatherState(forecast) {

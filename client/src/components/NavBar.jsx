@@ -95,7 +95,7 @@ var NavBar = props => {
 
       <Route
         path="/creategame"
-        render={props => <CreateGame changeTarget={changeTarget} target={target} userInfo={userInfo} />}
+        render={props => <CreateGame changeTarget={changeTarget} target={target} userInfo={userInfo} {...props} />}
       />
 
       <Route
