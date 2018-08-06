@@ -235,7 +235,7 @@ class EventView extends React.Component {
 
           <div>
             <Modal show={this.state.modalIsOpen} onClose={this.toggleUserProfileModal}>
-              <div>User Profile:</div>
+              <div>Currently Viewing {this.state.user.firstName}'s User Profile:</div>
 
               <div className= "dash profile-image" style={ { backgroundImage: `url(${this.state.user.imageLink})` } }></div>
 
