@@ -30,7 +30,8 @@ export default class CreateGame extends Component {
         scoreTwo: this.state.scoreTwo, //from form
         sportId: '', //from props
       };
-      this.createGame(newGame);
+      //this.createGame(newGame);
+      console.log(newGame);
     }
   }
 

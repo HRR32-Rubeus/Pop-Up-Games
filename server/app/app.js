@@ -8,6 +8,7 @@ const field = require('./components/fields');
 const venue = require('./components/venues');
 const sport = require('./components/sports');
 const games = require('./components/games');
+const weather = require('./utils/darkSkyApi');
 
 const app = express();
 app.use(
@@ -201,7 +202,6 @@ app.post('/api/sports', util.checkLoggedIn, sport.create);
  */
 app.post('/api/message', util.checkLoggedIn, event.addMessage);
 
-
 //CHRIS'ENDPOINTS BEGIN
 
 //console logger
@@ -210,6 +210,7 @@ const logger = (req, res, next) => {
   console.log('req.body is', req.body);
   console.log('req.session is', req.session);
   console.log('req.query is', req.query);
+  console.log('req.params is', req.params);
   next();
 };
 
@@ -219,12 +220,16 @@ app.get('/api/gameresults', util.checkLoggedIn, logger, games.getGameResults);
 
 app.post('/api/creategame', util.checkLoggedIn, logger, games.createGame);
 
-//CHRIS'ENDPOINTS END
+app.get('/api/weather', util.checkLoggedIn, logger, (req, res) => {
+  weather.getWeather(req.query, data => {
+    res.send(data);
+  });
+});
 
+//CHRIS'ENDPOINTS END
 
 //update user information accordingly (actually should have been put)
 app.put('/api/updateUser', util.checkLoggedIn, user.updateMe);
-
 
 //2
 app.delete('/api/event/guest');

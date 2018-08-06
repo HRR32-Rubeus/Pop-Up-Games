@@ -168,6 +168,7 @@ db.knex.schema.hasTable('games').then(function(exists) {
         game.integer('eventId');
         game.integer('scoreOne');
         game.integer('scoreTwo');
+        game.string('gameName');
         //key that references the events table
       })
       .then(function(table) {

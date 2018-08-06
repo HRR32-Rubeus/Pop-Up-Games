@@ -12,8 +12,7 @@ import Games from './FEATURE/gamesContainer.jsx';
 import LeaguesContainer from './FEATURE-LEAGUES/LeaguesContainer.jsx';
 import CreateGame from './FEATURE/CreateGame.jsx';
 
-import DashBoard from './dashboard/DashBoard.jsx'
-
+import DashBoard from './dashboard/DashBoard.jsx';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /**
@@ -67,11 +66,7 @@ var NavBar = props => {
         render={props => <Field toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
       />
 
-      <Route
-        path="/dashboard"
-        render={props => <DashBoard/>}
-      />
-
+      <Route path="/dashboard" render={props => <DashBoard />} />
 
       <Route
         path="/event"
@@ -81,7 +76,18 @@ var NavBar = props => {
         path="/venue"
         render={props => <Venue toggleAuth={toggleAuth} changeTarget={changeTarget} target={target} {...props} />}
       />
-      <Route path="/leagues" render={props => <LeaguesContainer changeTarget={changeTarget} target={target} />} />
+      <Route
+        path="/leagues"
+        render={props => (
+          <LeaguesContainer
+            toggleAuth={toggleAuth}
+            changeTarget={changeTarget}
+            target={target}
+            userInfo={userInfo}
+            {...props}
+          />
+        )}
+      />
       <Route
         path="/games"
         render={props => <Games changeTarget={changeTarget} target={target} userInfo={userInfo} />}

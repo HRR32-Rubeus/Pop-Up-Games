@@ -23,7 +23,6 @@ import { withRouter } from 'react-router-dom';
 //     this.changeTarget = props.changeTarget;
 //   }
 
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -56,10 +55,8 @@ class Home extends React.Component {
         }
       });
 
-
-
-
-    axios.get('/api/me')
+    axios
+      .get('/api/me')
       .then(userData => {
         //update the position property as follows b/c it's an object
         let position = Object.assign({}, this.state.position);
@@ -67,9 +64,9 @@ class Home extends React.Component {
         position.lng = userData.data.lng;
         position.address = userData.data.address;
         //now set state of the new values for position state
-        this.setState({user: userData.data});
-        this.setState({position});
-        this.setState({renderMap: true});
+        this.setState({ user: userData.data });
+        this.setState({ position });
+        this.setState({ renderMap: true });
       })
       .catch(err => console.log(err));
   }
@@ -99,7 +96,13 @@ class Home extends React.Component {
           </div>
           <div>
             <div className="venuecolumn">
-              <VenueList changeTarget={this.changeTarget} venues={this.state.nearbyVenues} />
+              <VenueList
+                changeTarget={this.changeTarget}
+                venues={this.state.nearbyVenues}
+                positions={this.state.position}
+              />
+              {this.state.position.lat}
+              {this.state.position.lng}
             </div>
           </div>
         </div>
