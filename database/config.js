@@ -3,12 +3,12 @@ var path = require('path');
 //Setup the connection to the database. If NODE_ENV is set, switch to a test database
 var knex = require('knex')({
   client: 'mysql',
-  connection: process.env.DATABASE_URL || {
+  connection: process.env.CLEARDB_DATABASE_URL || {
     host: '127.0.0.1',
     user: 'root',
     password: process.env.DBPASS || require('../config/config.js').DBPASS,
     database: process.env.NODE_ENV === 'test' ? 'popupgamesTest' : 'popupgames',
-    port: require('../config/config.js').DBPORT,
+    port: process.env.DBPORT || require('../config/config.js').DBPORT,
   },
   useNullAsDefault: true,
 });
@@ -18,10 +18,10 @@ var db = require('bookshelf')(knex);
 db.plugin('registry');
 
 //Table schemas
-db.knex.schema.hasTable('users').then(function(exists) {
+db.knex.schema.hasTable('users').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('users', function(user) {
+      .createTable('users', function (user) {
         user.increments('id').primary();
         user.string('username', 30).unique();
         user.string('password');
@@ -38,31 +38,32 @@ db.knex.schema.hasTable('users').then(function(exists) {
         user.boolean('isPublic').defaultTo(true);
         user.timestamps();
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('messages').then(function(exists) {
+db.knex.schema.hasTable('messages').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('messages', function(message) {
+      .createTable('messages', function (message) {
         message.increments('id').primary();
         message.string('body');
         message.integer('userId');
         message.integer('eventId');
         message.timestamps();
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
-  }});
+  }
+});
 
-db.knex.schema.hasTable('events').then(function(exists) {
+db.knex.schema.hasTable('events').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('events', function(event) {
+      .createTable('events', function (event) {
         event.increments('id').primary();
         event.string('eventName', 30);
         event.float('startBlock');
@@ -76,46 +77,46 @@ db.knex.schema.hasTable('events').then(function(exists) {
         event.integer('fieldId');
         event.timestamps();
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('sports').then(function(exists) {
+db.knex.schema.hasTable('sports').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('sports', function(sport) {
+      .createTable('sports', function (sport) {
         sport.increments('id').primary();
         sport.string('sportName', 30).unique();
         sport.boolean('isVerified').defaultTo(false);
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('fields').then(function(exists) {
+db.knex.schema.hasTable('fields').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('fields', function(field) {
+      .createTable('fields', function (field) {
         field.increments('id').primary();
         field.string('fieldName', 30);
         field.string('notes');
         field.boolean('isVerified').defaultTo(false);
         field.integer('venueId');
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('venues').then(function(exists) {
+db.knex.schema.hasTable('venues').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('venues', function(venue) {
+      .createTable('venues', function (venue) {
         venue.increments('id').primary();
         venue.string('venueName', 30);
         venue.string('address');
@@ -123,45 +124,45 @@ db.knex.schema.hasTable('venues').then(function(exists) {
         venue.float('lat', 18, 10);
         venue.float('lng', 18, 10);
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
 //Join tables for many-to-many relationships
-db.knex.schema.hasTable('fields_sports').then(function(exists) {
+db.knex.schema.hasTable('fields_sports').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('fields_sports', function(pair) {
+      .createTable('fields_sports', function (pair) {
         pair.increments('id').primary();
         pair.integer('fieldId');
         pair.integer('sportId');
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('events_users').then(function(exists) {
+db.knex.schema.hasTable('events_users').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('events_users', function(pair) {
+      .createTable('events_users', function (pair) {
         pair.increments('id').primary();
         pair.integer('eventId');
         pair.integer('userId');
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('games').then(function(exists) {
+db.knex.schema.hasTable('games').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('games', function(game) {
+      .createTable('games', function (game) {
         game.increments('id').primary();
         game.string('teamOne');
         game.string('teamTwo');
@@ -171,21 +172,21 @@ db.knex.schema.hasTable('games').then(function(exists) {
         game.string('gameName');
         //key that references the events table
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
 });
 
-db.knex.schema.hasTable('events_games').then(function(exists) {
+db.knex.schema.hasTable('events_games').then(function (exists) {
   if (!exists) {
     db.knex.schema
-      .createTable('events_games', function(pair) {
+      .createTable('events_games', function (pair) {
         pair.increments('id').primary();
         pair.integer('eventId');
         pair.integer('gameId');
       })
-      .then(function(table) {
+      .then(function (table) {
         console.log('Created Table', table);
       });
   }
