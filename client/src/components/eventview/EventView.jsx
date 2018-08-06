@@ -7,6 +7,8 @@ import utils from '../../../utils.js';
 import FormError from '../FormError.jsx';
 import FormField from '../FormField.jsx';
 import PropTypes from 'prop-types';
+import Modal from './Modal.jsx';
+import md5 from 'js-md5';
 
 /**
  * @description Component that holds the overall view for an event
@@ -19,14 +21,30 @@ class EventView extends React.Component {
       event: undefined,
       joined: false,
       message: '',
+      modalIsOpen: false,
+      user: {
+              firstName: null,
+              lastName: null,
+              email: null,
+              imageLink: null,
+              bio: null,
+              favSports: null
+            }
     };
+
+    this.handleGuestClick = this.handleGuestClick.bind(this);
+    this.toggleUserProfileModal = this.toggleUserProfileModal.bind(this);
+    this.createImageLink = this.createImageLink.bind(this);
   }
+
   /**
    * @description calls the function to get the event data from the database when ready
    */
   componentWillMount() {
     this.getEventData();
   }
+
+
 
   /**
    * @description creates an axios get request to the event endpoint to get all the info about
@@ -37,6 +55,7 @@ class EventView extends React.Component {
     axios
       .get('/api/event', { params: { id: this.state.eventId } })
       .then(response => {
+        console.log('response for event data:', response);
         this.setState({ event: response.data });
       })
       .catch(error => {
@@ -126,6 +145,65 @@ class EventView extends React.Component {
       });
   }
 
+
+
+  /**
+   * @description renders a pop up modal with details of the guest who's name is clicked.
+   * @param user profile details
+   * @return a modal is rendered, but not data returned
+   */
+
+  handleGuestClick (firstName, lastName, email, bio, favSports) {
+    let user = Object.assign({}, this.state.user);
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.bio = bio;
+    user.favSports = favSports;
+    this.createImageLink(email);
+    this.setState({user});
+    //this.toggleUserProfileModal();
+  }
+
+  /**
+   * @description updates state to display modal
+   * @param n/a
+   * @return n/a
+   */
+ toggleUserProfileModal () {
+    this.setState({modalIsOpen: !this.state.modalIsOpen});
+ }
+
+
+   /**
+   * @description creates a link to a gravatar user's profile image, requires the use of md5 hash algorithm (installed as npm package)
+   * @param String of the user's email.  The email must be trimmed of white space and converted to all lowercase
+   * @return n/a
+   */
+  createImageLink (email) {
+    email = email.trim();
+    email = email.toLowerCase();
+    const hash = md5(email);
+    const imageLink =`https://en.gravatar.com/${hash}.json`;
+    axios.get(imageLink)
+      .then(response => {
+        let imageLink = response.data.entry[0].thumbnailUrl;
+        //add an 's' parameter to specify image default dimensions of 200px
+        imageLink += 's=400';
+
+        let user = Object.assign({}, this.state.user);
+        user.imageLink = imageLink;
+        this.setState({user});
+        this.toggleUserProfileModal();
+      })
+      .catch(err => {
+        console.log('Oops! This User Doesnt Have A Gravatar Account!')
+        //even if the gravatar profile image is not rendered, we still want to
+        //render the modal window
+        this.toggleUserProfileModal();
+      });
+
+  }
+
   render() {
     if (this.state.event === undefined) {
       return <div>Loading</div>;
@@ -152,7 +230,26 @@ class EventView extends React.Component {
           </div>
           <div className="guestlist">
             <FormError check={this.state.joined} message={'You have been added to the guest list'} />
-            <GuestList GuestList={this.state.event.guests} />
+            <GuestList GuestList={this.state.event.guests} handleGuestClick={this.handleGuestClick}/>
+          </div>
+
+          <div>
+            <Modal show={this.state.modalIsOpen} onClose={this.toggleUserProfileModal}>
+              <div>Currently Viewing {this.state.user.firstName}'s User Profile:</div>
+
+              <div className= "dash profile-image" style={ { backgroundImage: `url(${this.state.user.imageLink})` } }></div>
+
+              <div className="form-style">
+                <div><div className="boldMod">First Name: </div><div>{this.state.user.firstName}</div></div>
+
+                <div><div className="boldMod">Last Name: </div><div>{this.state.user.lastName}</div></div>
+
+                <div><div className="boldMod">About Me: </div><div>{this.state.user.bio}</div></div>
+
+                <div><div className="boldMod">Favorite Sports: </div><div>{this.state.user.favSports}</div></div>
+              </div>
+
+            </Modal>
           </div>
         </div>
       );

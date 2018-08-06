@@ -15,7 +15,10 @@ class DashPrimary extends React.Component {
       firstName: props.userData.firstName,
       lastName:  props.userData.lastName,
       address: props.userData.address,
-      updated: false
+      favSports: props.userData.favSports,
+      bio: props.userData.bio,
+      updated: false,
+      isSaved: true
     }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +27,8 @@ class DashPrimary extends React.Component {
     this.handleChange_address = this.handleChange_address.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderSubmitConfirm = this.renderSubmitConfirm.bind(this);
+    this.handleChange_sports = this.handleChange_sports.bind(this);
+    this.handleChange_bio = this.handleChange_bio.bind(this);
   }
 
   /**
@@ -38,7 +43,9 @@ class DashPrimary extends React.Component {
       username: this.state.username,
       firstName:this.state.firstName,
       lastName: this.state.lastName,
-      address: this.state.address
+      address: this.state.address,
+      favSports: this.state.favSports,
+      bio: this.state.bio
     }
 
     axios
@@ -48,7 +55,8 @@ class DashPrimary extends React.Component {
        })
       .catch(err => console.log(err));
 
-     this.setState({updated: true})
+     this.setState({updated: true});
+     this.setState({isSaved: true});
   }
 
   /**
@@ -58,6 +66,7 @@ class DashPrimary extends React.Component {
    */
   handleChange_firstName(e) {
     this.setState({firstName: e.target.value})
+    this.setState({isSaved: false})
   }
 
   /**
@@ -66,9 +75,8 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   handleChange_lastName(e) {
-    //console.log('old last name:', this.state.lastName);
     this.setState({lastName: e.target.value})
-    //console.log('new last name:', this.state.lastName)
+    this.setState({isSaved: false})
   }
 
   /**
@@ -77,9 +85,18 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   handleChange_address(e) {
-    //console.log('old add:', this.state.address);
     this.setState({address: e.target.value})
-    //console.log('new add:', this.state.address);
+    this.setState({isSaved: false})
+  }
+
+  handleChange_sports (e) {
+    this.setState({favSports: e.target.value})
+    this.setState({isSaved: false})
+  }
+
+  handleChange_bio (e) {
+    this.setState({bio: e.target.value})
+    this.setState({isSaved: false})
   }
 
   /**
@@ -90,13 +107,22 @@ class DashPrimary extends React.Component {
   renderForm () {
     return (
 
+
+
         <div className="form-style dash">
-
-          <div className="dash-plain-form">{this.props.userData.email}</div>
-          <div className="dash-plain-form">{this.props.userData.username}</div>
-          <hr></hr>
-
           <form onSubmit={this.handleSubmit}>
+
+              <div>
+                Username:
+                  <div className="form-style dash-solid">{this.props.userData.username}</div>
+              </div>
+
+              <div>
+                Email:
+                  <div className="form-style dash-solid">{this.props.userData.email}</div>
+              </div>
+            <hr></hr>
+
             <div>
               <label>
                 First Name:
@@ -117,6 +143,18 @@ class DashPrimary extends React.Component {
               <input type="text" defaultValue={this.props.userData.address} onChange={this.handleChange_address}/>
             </label>
 
+            <label>
+              List Some of Your Favorite Sports:
+              <input type="text" defaultValue={this.props.userData.favSports} onChange={this.handleChange_sports}/>
+            </label>
+
+            <label>
+              Tell Us A Bit About Yourself:
+              <input type="text" defaultValue={this.props.userData.bio} onChange={this.handleChange_bio}/>
+            </label>
+
+            {this.renderSubmitConfirm()}
+
             <button className="profile-button dash-plain" onClick={this.handleSubmit}><span>UPDATE MY PROFILE</span></button>
 
           </form>
@@ -130,9 +168,11 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   renderSubmitConfirm () {
-    return (
-      <div className='dash-plain'>Your Profile Has Been Updated!</div>
-    );
+    if (this.state.isSaved === false) {
+        return(<div className='dash-plain-unsaved'>You Have Unsaved Changes!</div>);
+    } else {
+        return(<div className='dash-plain-saved'>Your Profile Is UpToDate!</div>);
+    }
   }
 
 
@@ -148,8 +188,8 @@ class DashPrimary extends React.Component {
         <div className="dash dash-plain dash-plain-grav">Don't See Your Picture Above? <a href="https://en.gravatar.com/site/signup/" target="_blank">Sign Up For A Gravitar Profile</a></div>
 
 
+        {this.renderForm()}
 
-        {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}
 
       </div>
     );
@@ -158,3 +198,5 @@ class DashPrimary extends React.Component {
 
 
 export default DashPrimary
+
+// {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}

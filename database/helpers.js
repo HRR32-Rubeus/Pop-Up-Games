@@ -141,7 +141,7 @@ exports.getGuests = event =>
       .fetch({ withRelated: ['guests'] })
       .then(found => {
         var guests = JSON.parse(JSON.stringify(found.related('guests')));
-        var gsts = guests.map(({ firstName, lastName, email, rating }) => ({ firstName, lastName, email, rating }));
+        var gsts = guests.map(({ id, firstName, lastName, email, rating, bio, favSports }) => ({ id, firstName, lastName, email, rating, bio, favSports }));
         resolve(gsts);
       })
       .catch(reject);
@@ -276,22 +276,22 @@ exports.getMe = username =>
   new Promise(resolve =>
     new User({ username: username })
       .fetch()
-      .then(found => resolve(delete found.attributes.password && found.attributes))
+      .then(found => {
+        console.log('user found attributes', found);
+        resolve(delete found.attributes.password && found.attributes)
+      })
   );
 
 //Update a User's profile from the dashboard page - only applicable to logged in users
 exports.updateMe = body =>
   new Promise(resolve =>
     new User({ id: body.id })
-      .save(
-        {
-          firstName: body.firstName,
-          lastName: body.lastName,
-          address: body.address,
-          lat: body.lat,
-          lng: body.lng,
-        },
-        { patch: true }
-      )
+      .save({firstName: body.firstName,
+             lastName: body.lastName,
+             address: body.address,
+             lat: body.lat,
+             lng: body.lng,
+             bio: body.bio,
+             favSports: body.favSports}, {patch: true})
       .then(found => resolve(found))
   );

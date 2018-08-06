@@ -502,8 +502,25 @@ h6{font-size:16px}
   background: #ECF0F1;
 }
 
+.dash-plain-saved {
+  font-size:14px;line-height:1.5;
+  background: black;
+  color: white;
+}
+
+.dash-plain-unsaved {
+  font-size:14px;line-height:1.5;
+  background: black;
+  color: orange;
+}
+
 .dash-plain-grav {
   font-size:13px;line-height:1.5;
+}
+
+.dash-solid {
+  background: #164463;
+  color: white;
 }
 
 
@@ -580,6 +597,16 @@ h6{font-size:16px}
 .profile-button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.boldMod {
+  color: white;
+  font-weight: bold;
+  background: #3498DB;
+}
+
+.hover{
+  cursor: pointer;
 }
 
 

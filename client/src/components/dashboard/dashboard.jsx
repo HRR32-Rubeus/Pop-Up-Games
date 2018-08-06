@@ -37,6 +37,7 @@ class DashBoard extends React.Component {
       .then(userData => {
         this.setState({userData: userData});
         this.createImageLink(userData.data.email);
+        console.log('user data state:', this.state.userData);
       })
       .catch(err => console.log(err));
   }
@@ -58,7 +59,7 @@ class DashBoard extends React.Component {
         imageLink += 's=400';
         this.setState({imageLink: imageLink});
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log('Oops this user doesnt have a gravatar account!'));
 
   }
 

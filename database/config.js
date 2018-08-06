@@ -33,6 +33,9 @@ db.knex.schema.hasTable('users').then(function(exists) {
         user.string('address');
         user.float('lat', 18, 10);
         user.float('lng', 18, 10);
+        user.string('favSports', 500).defaultTo('{Fill me out!}');
+        user.string('bio', 500).defaultTo('{Fill me out!}');
+        user.boolean('isPublic').defaultTo(true);
         user.timestamps();
       })
       .then(function(table) {
@@ -54,8 +57,7 @@ db.knex.schema.hasTable('messages').then(function(exists) {
       .then(function(table) {
         console.log('Created Table', table);
       });
-  }
-});
+  }});
 
 db.knex.schema.hasTable('events').then(function(exists) {
   if (!exists) {
