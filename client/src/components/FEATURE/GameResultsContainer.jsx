@@ -31,11 +31,24 @@ export default class GameResultsContainer extends Component {
     super(props);
 
     this.state = {
-      games: fakeData,
+      gamesData: [],
     };
   }
 
+  componentDidMount() {
+    axios.get('/api/gameresults', { params: { eventId: this.props.eventId } }).then(res => {
+      console.log('res from gameresults is', res.data);
+      this.setState({ gamesData: res.data });
+    });
+  }
+
   render() {
-    return <div>{this.state.games.map(game => <GameResult game={game} />)}</div>;
+    return (
+      <div>
+        {this.state.gamesData
+          ? this.state.gamesData.map((game, i) => <GameResult game={game} key={i} eventId={this.props.eventId} />)
+          : ''}
+      </div>
+    );
   }
 }

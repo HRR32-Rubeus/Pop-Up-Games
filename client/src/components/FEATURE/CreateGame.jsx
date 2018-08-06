@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import FormField from '../FormField.jsx';
 import axios from 'axios';
+import { withRouter } from 'react-router';
 
-export default class CreateGame extends Component {
+class CreateGame extends Component {
   constructor(props) {
     super(props);
 
@@ -14,6 +15,7 @@ export default class CreateGame extends Component {
   componentDidMount() {
     //do we need to get any data when this is mounted?
     //we can make a server call, or we can pass down all of it through propss
+    console.log();
   }
 
   processForm() {
@@ -22,15 +24,15 @@ export default class CreateGame extends Component {
       this.setState({ otherErrors: true });
     } else {
       let newGame = {
-        eventId: this.props.eventId, //from props
+        eventId: this.props.location.state.eventId,
         gameName: this.state.gameName,
-        teamOne: this.state.teamOne, //from form
-        teamTwo: this.state.teamTwo, //from form
-        scoreOne: this.state.scoreOne, //from form
-        scoreTwo: this.state.scoreTwo, //from form
-        sportId: '', //from props
+        teamOne: this.state.teamOne,
+        teamTwo: this.state.teamTwo,
+        scoreOne: this.state.scoreOne,
+        scoreTwo: this.state.scoreTwo,
+        sportId: '',
       };
-      //this.createGame(newGame);
+      this.createGame(newGame);
       console.log(newGame);
     }
   }
@@ -60,7 +62,7 @@ export default class CreateGame extends Component {
       <div className="main">
         <div className="search-container">
           <h2 className="center">Add the game's results here!</h2>
-          <h4 className="center">Event Name Here!!</h4>
+          <h4 className="center">{this.props.location.state.eventName}</h4>
           <div className="create-event-form">
             <div className="createeventdetailsgrid">
               <FormField
@@ -109,3 +111,4 @@ export default class CreateGame extends Component {
     );
   }
 }
+export default withRouter(CreateGame);

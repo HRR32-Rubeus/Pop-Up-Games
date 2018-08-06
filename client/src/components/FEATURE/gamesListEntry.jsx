@@ -29,7 +29,7 @@ class GamesListEntry extends React.Component {
           this.changeTarget({ type: 'game', id: this.props.data.id });
           this.props.history.push({
             pathname: '/creategame',
-            state: { eventName: this.props.data.eventName },
+            state: { eventName: this.props.data.eventName, eventId: this.props.data.id },
           });
           console.log('game clicked');
         }}
@@ -38,7 +38,7 @@ class GamesListEntry extends React.Component {
         <span className="bold"> {moment(this.props.data.date).format('MMM Do YY')} </span> <br />
         <span className="bold">Event Name: </span> {this.props.data.eventName} <br />
         <span className="bold">Notes:</span> {this.props.data.notes} <br />
-        <GameResultsContainer />
+        <GameResultsContainer eventId={this.props.data.id} />
       </div>
     );
   }

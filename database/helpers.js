@@ -99,12 +99,15 @@ exports.saveGame = game =>
       })
   );
 
-//gets the games from the table, input: ???
-exports.getGame = game =>
+//gets the games from the table, input: eventId
+exports.getGames = eventData =>
   new Promise((resolve, reject) =>
-    new Game() // what the heck do i put in here?
-      .fetch()
-      .then(found => new Game())
+    Game.where('eventId', '=', eventData.eventId)
+      .fetchAll()
+      .then(foundData => {
+        console.log('FOUND DATA IS:', foundData);
+        resolve(foundData);
+      })
   );
 
 //get the event, input: {id(id of the event)}
