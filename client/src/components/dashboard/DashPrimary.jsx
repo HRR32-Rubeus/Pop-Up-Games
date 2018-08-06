@@ -16,6 +16,7 @@ class DashPrimary extends React.Component {
       lastName:  props.userData.lastName,
       address: props.userData.address,
       favSports: props.userData.favSports,
+      bio: props.userData.bio,
       updated: false
     }
     console.log('inbound props:', this.props.userData);
@@ -26,6 +27,7 @@ class DashPrimary extends React.Component {
     this.renderForm = this.renderForm.bind(this);
     this.renderSubmitConfirm = this.renderSubmitConfirm.bind(this);
     this.handleChange_sports = this.handleChange_sports.bind(this);
+    this.handleChange_bio = this.handleChange_bio.bind(this);
   }
 
   /**
@@ -41,7 +43,8 @@ class DashPrimary extends React.Component {
       firstName:this.state.firstName,
       lastName: this.state.lastName,
       address: this.state.address,
-      favSports: this.state.favSports
+      favSports: this.state.favSports,
+      bio: this.state.bio
     }
 
     axios
@@ -87,6 +90,10 @@ class DashPrimary extends React.Component {
 
   handleChange_sports (e) {
     this.setState({favSports: e.target.value})
+  }
+
+  handleChange_bio (e) {
+    this.setState({bio: e.target.value})
   }
 
   /**
