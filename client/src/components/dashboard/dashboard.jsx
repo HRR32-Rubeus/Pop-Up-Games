@@ -37,6 +37,7 @@ class DashBoard extends React.Component {
       .then(userData => {
         this.setState({userData: userData});
         this.createImageLink(userData.data.email);
+        console.log('user data state:', this.state.userData);
       })
       .catch(err => console.log(err));
   }

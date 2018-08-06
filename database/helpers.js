@@ -266,7 +266,10 @@ exports.getMe = username =>
   new Promise(resolve =>
     new User({ username: username })
       .fetch()
-      .then(found => resolve(delete found.attributes.password && found.attributes))
+      .then(found => {
+        console.log('user found attributes', found);
+        resolve(delete found.attributes.password && found.attributes)
+      })
   );
 
 //Update a User's profile from the dashboard page - only applicable to logged in users

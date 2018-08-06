@@ -117,6 +117,18 @@ class DashPrimary extends React.Component {
               <input type="text" defaultValue={this.props.userData.address} onChange={this.handleChange_address}/>
             </label>
 
+            <label>
+              Fav Soprts:
+              <input type="text" defaultValue={this.props.userData.favSports} onChange={this.handleChange_address}/>
+            </label>
+
+            <label>
+              Brief Bio:
+              <input type="text" defaultValue={this.props.userData.bio} onChange={this.handleChange_address}/>
+            </label>
+
+
+
             <button className="profile-button dash-plain" onClick={this.handleSubmit}><span>UPDATE MY PROFILE</span></button>
 
           </form>
