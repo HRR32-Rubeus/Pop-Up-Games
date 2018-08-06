@@ -17,7 +17,8 @@ class DashPrimary extends React.Component {
       address: props.userData.address,
       favSports: props.userData.favSports,
       bio: props.userData.bio,
-      updated: false
+      updated: false,
+      isSaved: true
     }
     console.log('inbound props:', this.props.userData);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,7 +55,8 @@ class DashPrimary extends React.Component {
        })
       .catch(err => console.log(err));
 
-     this.setState({updated: true})
+     this.setState({updated: true});
+     this.setState({isSaved: true});
   }
 
   /**
@@ -64,6 +66,7 @@ class DashPrimary extends React.Component {
    */
   handleChange_firstName(e) {
     this.setState({firstName: e.target.value})
+    this.setState({isSaved: false})
   }
 
   /**
@@ -72,9 +75,8 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   handleChange_lastName(e) {
-    //console.log('old last name:', this.state.lastName);
     this.setState({lastName: e.target.value})
-    //console.log('new last name:', this.state.lastName)
+    this.setState({isSaved: false})
   }
 
   /**
@@ -83,17 +85,18 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   handleChange_address(e) {
-    //console.log('old add:', this.state.address);
     this.setState({address: e.target.value})
-    //console.log('new add:', this.state.address);
+    this.setState({isSaved: false})
   }
 
   handleChange_sports (e) {
     this.setState({favSports: e.target.value})
+    this.setState({isSaved: false})
   }
 
   handleChange_bio (e) {
     this.setState({bio: e.target.value})
+    this.setState({isSaved: false})
   }
 
   /**
@@ -165,9 +168,11 @@ class DashPrimary extends React.Component {
    * @return n/a
    */
   renderSubmitConfirm () {
-    return (
-      <div className='dash-plain'>Your Profile Has Been Updated!</div>
-    );
+    if (this.state.isSaved === false) {
+        return(<div className='dash-plain'>You Have Unsaved Changes!</div>);
+    } else {
+        return(<div className='dash-plain'>Your Profile Is UpToDate!</div>);
+    }
   }
 
 
@@ -183,8 +188,8 @@ class DashPrimary extends React.Component {
         <div className="dash dash-plain dash-plain-grav">Don't See Your Picture Above? <a href="https://en.gravatar.com/site/signup/" target="_blank">Sign Up For A Gravitar Profile</a></div>
 
 
-
-        {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}
+        {this.renderForm()}
+        {this.renderSubmitConfirm()}
 
       </div>
     );
@@ -193,3 +198,5 @@ class DashPrimary extends React.Component {
 
 
 export default DashPrimary
+
+// {this.state.updated === false ? this.renderForm() : this.renderSubmitConfirm()}
