@@ -153,7 +153,7 @@ class DashPrimary extends React.Component {
               <input type="text" defaultValue={this.props.userData.bio} onChange={this.handleChange_bio}/>
             </label>
 
-
+            {this.renderSubmitConfirm()}
 
             <button className="profile-button dash-plain" onClick={this.handleSubmit}><span>UPDATE MY PROFILE</span></button>
 
@@ -169,9 +169,9 @@ class DashPrimary extends React.Component {
    */
   renderSubmitConfirm () {
     if (this.state.isSaved === false) {
-        return(<div className='dash-plain'>You Have Unsaved Changes!</div>);
+        return(<div className='dash-plain-unsaved'>You Have Unsaved Changes!</div>);
     } else {
-        return(<div className='dash-plain'>Your Profile Is UpToDate!</div>);
+        return(<div className='dash-plain-saved'>Your Profile Is UpToDate!</div>);
     }
   }
 
@@ -189,7 +189,7 @@ class DashPrimary extends React.Component {
 
 
         {this.renderForm()}
-        {this.renderSubmitConfirm()}
+
 
       </div>
     );
