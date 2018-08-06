@@ -1,6 +1,6 @@
 node_modules/
 config/
-client/dist/bundle.js
+# client/dist/bundle.js
 
 # Floobits
 .floo
