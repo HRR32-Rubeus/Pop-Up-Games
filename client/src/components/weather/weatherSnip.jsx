@@ -29,7 +29,7 @@ export default class WeatherSnip extends Component {
       <div>
         It is currently {this.state.weather.currently ? this.state.weather.currently.temperature : ''} degrees F
         <br />
-        It will be {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} degrees F
+        It will be {this.state.weather.hourly ? this.state.weather.hourly.data[4].temperature : ''} degrees F{' '}
         {this.state.weather.hourly ? moment(this.state.weather.hourly.data[4].time * 1000).fromNow() : ''}
       </div>
     );
