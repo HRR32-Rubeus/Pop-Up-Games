@@ -12,7 +12,7 @@ import Games from './FEATURE/gamesContainer.jsx';
 import LeaguesContainer from './FEATURE-LEAGUES/LeaguesContainer.jsx';
 import CreateGame from './FEATURE/CreateGame.jsx';
 
-import DashBoard from './dashboard/DashBoard.jsx';
+import DashBoard from './dashboard/dashBoard.jsx';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /**
