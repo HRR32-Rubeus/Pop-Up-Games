@@ -41,11 +41,13 @@ const create = (req, res) =>
     res
   );
 
+//THIS IS WHERE WE CAN SET THE DISTANCE!!!!
 const getVenuesNearMe = (req, res) =>
   util.getRes(
     //get all the venues within 20 miles of the user's location
-    db.getVenuesNearUser(req.session.user, 20),
-    res
+    db.getVenuesNearUser(req.session.user, req.query.dist),
+    res,
+    console.log(req.query.dist)
   );
 
 exports.get = get;

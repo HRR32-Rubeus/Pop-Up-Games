@@ -29,11 +29,11 @@ class VenueEntry extends React.Component {
           }}
         >
           <span className="bold">Name: </span>
-          <span>{this.state.venue.venueName}</span>
+          <span>{this.props.venue.venueName}</span>
           <br />
           <br />
           <span className="bold">Address: </span>
-          <span>{this.state.venue.address}</span>
+          <span>{this.props.venue.address}</span>
           <br />
           <br />
           <WeatherSnip lat={this.props.venue.lat} lng={this.props.venue.lng} />
