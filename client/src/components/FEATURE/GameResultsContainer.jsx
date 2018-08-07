@@ -13,7 +13,7 @@ export default class GameResultsContainer extends Component {
 
   componentDidMount() {
     axios.get('/api/gameresults', { params: { eventId: this.props.eventId } }).then(res => {
-      console.log('res from gameresults is', res.data);
+      // console.log('res from gameresults is', res.data);
       this.setState({ gamesData: res.data });
     });
   }

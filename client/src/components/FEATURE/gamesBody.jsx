@@ -47,7 +47,7 @@ class GamesBody extends React.Component {
         },
       })
       .then(response => {
-        console.log('response from server: ', response);
+        // console.log('response from server: ', response);
         this.setState({ userGames: response.data });
       })
       .catch(error => {

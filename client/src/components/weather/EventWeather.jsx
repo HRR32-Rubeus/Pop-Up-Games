@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import WeatherVis from './WeatherVis.jsx';
 
 import {
   Charts,
@@ -58,12 +57,12 @@ export default class EventWeather extends Component {
 
   convertTime(startblock, endblock, date) {
     let secondsToAddStart = startblock * 30 * 60;
-    console.log('secondsToAddStart is', secondsToAddStart);
+    // console.log('secondsToAddStart is', secondsToAddStart);
     let secondsToAddEnd = endblock * 30 * 60;
-    console.log('secondsToAddEnd is', secondsToAddEnd);
+    // console.log('secondsToAddEnd is', secondsToAddEnd);
     let startTime = parseInt(moment(date).format('X')) + secondsToAddStart;
     let endTime = parseInt(moment(date).format('X')) + secondsToAddEnd;
-    console.log('start time is', startTime);
+    // console.log('start time is', startTime);
     this.getWeather(startTime);
   }
 
@@ -72,10 +71,10 @@ export default class EventWeather extends Component {
   }
 
   dataBuilder(data) {
-    console.log('databuilder called', data);
+    // console.log('databuilder called', data);
     const temperaturePoints = [];
     const rainPoints = [];
-    console.log(data);
+    // console.log(data);
     const temps = [];
     const rains = [];
 
@@ -90,15 +89,8 @@ export default class EventWeather extends Component {
       temps.push(temp);
       rains.push(rain);
     }
-
-    // data.forEach(reading => {
-    //   const time = reading.time * 1000; //refer to the time
-    //   const temp = reading.temperature; //refer to the temp
-    //   console.log('reading iteration');
-    //   temperaturePoints.push([time, temp]);
-    // });
-    console.log('temperaturepoints is ', temperaturePoints);
-    console.log('rainPoints is ', rainPoints);
+    // console.log('temperaturepoints is ', temperaturePoints);
+    // console.log('rainPoints is ', rainPoints);
 
     const tempSeries = new TimeSeries({
       name: 'Temperature',
@@ -184,20 +176,4 @@ export default class EventWeather extends Component {
     }
     return <div className="weathervis">{vis}</div>;
   }
-}
-{
-  /* <WeatherVis weatherData={this.state.selectedData} />; */
-}
-
-{
-  /* <ChartContainer
-  utc={this.state.mode === 'utc'}
-  timeRange={this.state.temps.timerange()}
-  showGridPosition="under"
-  trackerPosition={this.state.tracker}
-  trackerTimeFormat="%X"
-  onTrackerChanged={tracker => this.setState({ tracker })}
->
-  This is the chart container
-        </ChartContainer> */
 }

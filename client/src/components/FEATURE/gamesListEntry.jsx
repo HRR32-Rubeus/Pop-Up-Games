@@ -16,7 +16,7 @@ class GamesListEntry extends React.Component {
     this.state = {
       gameData: props.data,
     };
-    console.log(this.props.data);
+    // console.log(this.props.data);
     this.changeTarget = props.changeTarget;
   }
 
@@ -31,7 +31,7 @@ class GamesListEntry extends React.Component {
             pathname: '/creategame',
             state: { eventName: this.props.data.eventName, eventId: this.props.data.id },
           });
-          console.log('game clicked');
+          // console.log('game clicked');
         }}
       >
         <span className="bold">Game ID:</span> {this.props.data.id}

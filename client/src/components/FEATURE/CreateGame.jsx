@@ -15,7 +15,6 @@ class CreateGame extends Component {
   componentDidMount() {
     //do we need to get any data when this is mounted?
     //we can make a server call, or we can pass down all of it through propss
-    console.log();
   }
 
   processForm() {
@@ -33,7 +32,7 @@ class CreateGame extends Component {
         sportId: '',
       };
       this.createGame(newGame);
-      console.log(newGame);
+      // console.log(newGame);
     }
   }
 
@@ -43,7 +42,7 @@ class CreateGame extends Component {
 
     //will we need different components/calls for creation and editing?
     axios.post('/api/creategame', params, { headers: {} }).then(res => {
-      console.log(res);
+      // console.log(res);
     });
   }
 
