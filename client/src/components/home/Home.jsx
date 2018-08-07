@@ -54,7 +54,7 @@ class Home extends React.Component {
           console.log(error);
         }
       });
-    
+
     axios
       .get('/api/me')
       .then(userData => {
@@ -99,7 +99,7 @@ class Home extends React.Component {
           console.log(error);
         }
       });
-    
+
   }
 
   venueListRender() {
@@ -139,8 +139,6 @@ class Home extends React.Component {
           <div>
             <div className="venuecolumn">
               {this.venueListRender()}
-              {this.state.position.lat}
-              {this.state.position.lng}
             </div>
           </div>
         </div>
