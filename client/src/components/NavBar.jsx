@@ -43,9 +43,9 @@ var NavBar = props => {
           Create
         </Link>
 
-        <Link to="/leagues" className="bar-item button hide-small padding-large hover-white left-align ">
-          Leagues
-        </Link>
+        {/*<Link to="/leagues" className="bar-item button hide-small padding-large hover-white left-align ">
+        //   Leagues
+  // </Link>*/}
 
         <Link to="/games" className="bar-item button hide-small padding-large hover-white left-align ">
           Games

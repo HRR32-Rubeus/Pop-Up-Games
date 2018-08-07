@@ -130,7 +130,7 @@ class CreateEventForm extends React.Component {
         headers: {},
       })
       .then(response => {
-        this.props.history.push('/field');
+        this.props.history.push({ pathname: '/field', state: { position: '' } });
       })
       .catch(error => {
         if (error.response.status == 401 && error.response.data === 'user not logged in') {

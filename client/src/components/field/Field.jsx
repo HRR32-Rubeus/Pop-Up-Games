@@ -15,6 +15,7 @@ class Field extends React.Component {
       fieldId: props.target.field,
     };
     this.changeTarget = props.changeTarget;
+    this.position = this.props.history.location.state.position || '';
   }
   /**
    * @description get the field data when the componenet mounts
@@ -57,7 +58,7 @@ class Field extends React.Component {
             <FieldCalendar
               data={this.state.fieldObj}
               changeTarget={this.changeTarget}
-              position={this.props.history.location.state.position || ''}
+              position={this.position}
             />
           </div>
         </div>

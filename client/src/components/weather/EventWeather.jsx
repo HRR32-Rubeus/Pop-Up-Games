@@ -77,6 +77,7 @@ export default class EventWeather extends Component {
     const rainPoints = [];
     console.log(data);
     const temps = [];
+    const rains = [];
 
     for (let i = Math.floor(this.props.details.startBlock / 2); i < Math.ceil(this.props.details.endBlock / 2); i++) {
       console.log(i);
@@ -87,6 +88,7 @@ export default class EventWeather extends Component {
       temperaturePoints.push([time, temp]);
       rainPoints.push([time, rain]);
       temps.push(temp);
+      rains.push(rain);
     }
 
     // data.forEach(reading => {
@@ -114,9 +116,18 @@ export default class EventWeather extends Component {
     // });
     let highest = Math.max(...temps); // 4
     let lowest = Math.min(...temps); // 1
+    let highRain = Math.max(...rains); // 4
+    let lowRain = Math.min(...rains); // 1
 
     console.log(tempSeries);
-    this.setState({ temps: tempSeries, rains: rainSeries, low: lowest, high: highest });
+    this.setState({
+      temps: tempSeries,
+      rains: rainSeries,
+      low: lowest,
+      high: highest,
+      highRain: highRain,
+      lowRain: lowRain,
+    });
   }
 
   render() {
@@ -150,41 +161,19 @@ export default class EventWeather extends Component {
                   />
                   <Charts>
                     <LineChart axis="temp" series={this.state.temps} columns={['temp']} style={style} />
-                  </Charts>
-                </ChartRow>
-                <ChartRow height="150">
-                  <YAxis
-                    id="total-rain"
-                    label="Total Precipitation (in)"
-                    style={style.axisStyle('rainAccum')}
-                    labelOffset={-5}
-                    min={0}
-                    max={this.state.rains.max('rainAccum')}
-                    width="80"
-                    type="linear"
-                    format=",.2f"
-                  />
-                  <Charts>
-                    <AreaChart
-                      axis="rain"
-                      series={this.state.rains}
-                      columns={{ up: ['rain'] }}
-                      style={style}
-                      interpolation="curveBasis"
-                      fillOpacity={0.4}
-                    />
-                    <LineChart axis="total-rain" series={this.state.rains} columns={['rainAccum']} style={style} />
+                    <LineChart axis="rain" series={this.state.rains} columns={['rain']} style={style} />
                   </Charts>
                   <YAxis
                     id="rain"
-                    label="Precipitation (in)"
+                    label="Chance of Rain"
                     labelOffset={5}
-                    style={style.axisStyle('rain')}
-                    min={0}
-                    max={this.state.rains.max('rain')}
+                    min={this.state.lowRain}
+                    max={this.state.highRain + 0.05}
+                    tickCount={2}
                     width="80"
                     type="linear"
-                    format=",.2f"
+                    style={style.axisStyle('rain')}
+                    format=",.1f"
                   />
                 </ChartRow>
               </ChartContainer>
