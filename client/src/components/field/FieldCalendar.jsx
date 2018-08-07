@@ -35,7 +35,9 @@ class FieldCalendar extends React.Component {
               else return -1;
             })
             .map((event, index) => {
-              return <EventEntry data={event} key={index} changeTarget={this.changeTarget} />;
+              return (
+                <EventEntry data={event} key={index} changeTarget={this.changeTarget} position={this.props.position} />
+              );
             })}
         </div>
       </div>

@@ -148,9 +148,11 @@ class Home extends React.Component {
           <div className="venuemap">{this.gMapRender()}</div>
           <div>
             <div className="venuecolumn">
-              {this.venueListRender()}
-              {this.state.position.lat}
-              {this.state.position.lng}
+              <VenueList
+                changeTarget={this.changeTarget}
+                venues={this.state.nearbyVenues}
+                positions={this.state.position}
+              />
             </div>
           </div>
         </div>

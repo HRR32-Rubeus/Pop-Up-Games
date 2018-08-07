@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 var Venue = props => (
   <div className="main">
     <div>
-      <VenueBody target={props.target} changeTarget={props.changeTarget} />
+      <VenueBody target={props.target} changeTarget={props.changeTarget} position={props.history.location.state} />
     </div>
   </div>
 );

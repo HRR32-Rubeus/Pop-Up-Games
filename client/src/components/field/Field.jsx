@@ -54,7 +54,11 @@ class Field extends React.Component {
             <FieldInfo data={this.state.fieldObj.field} />
           </div>
           <div className="fieldcalendar">
-            <FieldCalendar data={this.state.fieldObj} changeTarget={this.changeTarget} />
+            <FieldCalendar
+              data={this.state.fieldObj}
+              changeTarget={this.changeTarget}
+              position={this.props.history.location.state.position || ''}
+            />
           </div>
         </div>
       );

@@ -226,6 +226,12 @@ app.get('/api/weather', util.checkLoggedIn, logger, (req, res) => {
   });
 });
 
+app.get('/api/weathertime', util.checkLoggedIn, logger, (req, res) => {
+  weather.getWeatherTime(req.query, data => {
+    res.send(data);
+  });
+});
+
 //CHRIS'ENDPOINTS END
 
 //update user information accordingly (actually should have been put)
