@@ -12,17 +12,6 @@ import { withRouter } from 'react-router-dom';
  * @param userInfo object containing data on the user
  */
 
-// class Home extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       user: props.userInfo,
-//       position: { lat: props.userInfo.lat, lng: props.userInfo.lng, address: props.userInfo.address },
-//       nearbyVenues: [],
-//     };
-//     this.changeTarget = props.changeTarget;
-//   }
-
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -65,11 +54,26 @@ class Home extends React.Component {
           console.log(error);
         }
       });
+    
+    axios
+      .get('/api/me')
+      .then(userData => {
+        //update the position property as follows b/c it's an object
+        let position = Object.assign({}, this.state.position);
+        position.lat = userData.data.lat;
+        position.lng = userData.data.lng;
+        position.address = userData.data.address;
+        //now set state of the new values for position state
+        this.setState({ user: userData.data });
+        this.setState({ position });
+        this.setState({ renderMap: true });
+      })
+      .catch(err => console.log(err));
   }
 
   /**
    * @description Used to re-render the Venue list based on what distance was selected by the user.
-   * venueDistRadius is passed as a prop to <VenueList/> where a dropdown menu returns the distance the user
+   * venuedistRadius is passed as a prop to <VenueList/> where a dropdown menu returns the distance the user
    * would like to search and updates the dist prop in Home.jsx accordingly.
    * Venue list is then re-rendered via a function call since update in parent prop wont re-render children
    */
@@ -95,21 +99,7 @@ class Home extends React.Component {
           console.log(error);
         }
       });
-
-    axios
-      .get('/api/me')
-      .then(userData => {
-        //update the position property as follows b/c it's an object
-        let position = Object.assign({}, this.state.position);
-        position.lat = userData.data.lat;
-        position.lng = userData.data.lng;
-        position.address = userData.data.address;
-        //now set state of the new values for position state
-        this.setState({ user: userData.data });
-        this.setState({ position });
-        this.setState({ renderMap: true });
-      })
-      .catch(err => console.log(err));
+    
   }
 
   venueListRender() {

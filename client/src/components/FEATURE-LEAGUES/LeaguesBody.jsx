@@ -43,7 +43,7 @@ class LeaguesBody extends React.Component {
       return (
         <div className="venue-body">
           <div className="venue-name">{this.props.userInfo.firstName}'s Leagues</div>
-          <div className="venueinfo">Venue info Class</div>
+          <div className="venueinfo">Your Game History</div>
           <div className="fieldlist">
             PlaceHolder
             {/* <GamesList games={this.state.userGames} changeTarget={this.props.changeTarget} /> */}

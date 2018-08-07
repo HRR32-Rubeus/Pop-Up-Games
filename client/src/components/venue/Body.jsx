@@ -4,6 +4,7 @@ import FieldList from './FieldList.jsx';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import VenueWeather from '../weather/VenueWeather.jsx';
 
 /**
  * @description Contains the body of the Venue page
@@ -72,11 +73,17 @@ class VenueBody extends React.Component {
           </div>
 
           <div className="venueinfo">
-            <VenueInfo venueinfo={this.state.venueObj.venue.address} />
+            <VenueInfo venueinfo={this.state.venueObj.venue.address} /> <br />
           </div>
 
+          <div className="venueweather">{/* <VenueWeather position={this.props.position} /> */}</div>
+
           <div className="fieldlist">
-            <FieldList changeTarget={this.changeTarget} fields={this.state.venueObj.fields} />
+            <FieldList
+              changeTarget={this.changeTarget}
+              fields={this.state.venueObj.fields}
+              position={this.props.position}
+            />
           </div>
         </div>
       );

@@ -47,7 +47,7 @@ class GamesBody extends React.Component {
         },
       })
       .then(response => {
-        console.log('response from server: ', response);
+        // console.log('response from server: ', response);
         this.setState({ userGames: response.data });
       })
       .catch(error => {
@@ -68,7 +68,7 @@ class GamesBody extends React.Component {
       return (
         <div className="venue-body">
           <div className="venue-name">{this.props.userInfo.firstName}'s Games</div>
-          <div className="venueinfo">Venue info Class</div>
+          <div className="venueinfo"></div>
           <div className="fieldlist">
             <GamesList games={this.state.userGames} changeTarget={this.props.changeTarget} />
           </div>

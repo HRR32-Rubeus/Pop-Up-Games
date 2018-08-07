@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 var FieldList = props => (
   <div>
     {props.fields.map((field, index) => {
-      return <FieldListEntry data={field} key={index} changeTarget={props.changeTarget} />;
+      return <FieldListEntry data={field} key={index} changeTarget={props.changeTarget} position={props.position} />;
     })}
   </div>
 );
