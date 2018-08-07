@@ -1,5 +1,5 @@
 import React from 'react';
-import GamesListEntry from './GamesListEntry.jsx';
+import GamesListEntry from './gamesListEntry.jsx';
 import PropTypes from 'prop-types';
 /**
  * @description component use to hold a list of games entries
